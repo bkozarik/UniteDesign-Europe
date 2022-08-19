@@ -14,7 +14,26 @@
     <link rel="stylesheet" href="assets/css/normalize.css">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
-
+<script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+<script src="assets/js/wow.min.js"></script>
+<script src="assets/js/main.js"></script>
+<script>
+    var wow = new WOW(
+    {
+        boxClass:     'wow',      // animated element css class (default is wow)
+        animateClass: 'animated', // animation css class (default is animated)
+        offset:       0,          // distance to the element when triggering the animation (default is 0)
+        mobile:       true,       // trigger animations on mobile devices (default is true)
+        live:         true,       // act on asynchronously loaded content (default is true)
+        callback:     function(box) {
+        // the callback is fired every time an animation is started
+        // the argument that is passed in is the DOM node being animated
+        },
+        scrollContainer: null // optional scroll container selector, otherwise use window
+    }
+    );
+    wow.init();
+</script>
 <body>
 
     <main id="main_bg">
@@ -78,39 +97,39 @@
 
 
                     <div class="main__left">
-                        <h1>Создаем <b>веб-сайты</b>, сервисы, <br>
+                        <h1 class="anim1 wow">Создаем <b>веб-сайты</b>, сервисы, <br>
                             мобильные приложения и стартапы, <br>
                             которые <b>приносят прибыль|</b></h1>
 
-                        <p class="main_desc">На базе сайта создадим автономную систему бесперебойного <br>
+                        <p class="main_desc anim2 wow">На базе сайта создадим автономную систему бесперебойного <br>
                             потока заявок из интернета 1 раз и навсегда</p>
 
                         <div class="main_list">
                             <div class="main_item">
-                                <img src="assets/img/icons/check.svg" alt="check">
-                                <span>200+</span>
-                                <p>Готовых проектов</p>
+                                <img class="anim1 wow" src="assets/img/icons/check.svg" alt="check">
+                                <span class="anim2 wow">200+</span>
+                                <p class="anim3 wow">Готовых проектов</p>
                             </div>
                             <div class="main_item">
-                                <img src="assets/img/icons/check.svg" alt="check">
-                                <span>11</span>
-                                <p>Успешных экспертов </p>
+                                <img class="anim1 wow" src="assets/img/icons/check.svg" alt="check">
+                                <span class="anim2 wow">11</span>
+                                <p class="anim3 wow">Успешных экспертов </p>
                             </div>
                             <div class="main_item">
-                                <img src="assets/img/icons/check.svg" alt="check">
-                                <span>8%</span>
-                                <p>Конверсия готовых сайтов</p>
+                                <img class="anim1 wow" src="assets/img/icons/check.svg" alt="check">
+                                <span class="anim2 wow">8%</span>
+                                <p class="anim3 wow">Конверсия готовых сайтов</p>
                             </div>
                         </div>
                         <div class="main_btn">
-                            <a class="btn_a" href="#">Оставить заявку и <br> получить кп <span>(бесплатно)</span>
-                                <img src="assets/img/btn-i.png" alt="" class="btn_i">
+                            <a class="btn_a anim1 wow" href="#">Оставить заявку и <br> получить кп <span>(бесплатно)</span>
+                                <img src="assets/img/btn-i.png" alt="" class="btn_i anim1 wow">
                             </a>
-                            <p class="main_btn_desc">Ответим на заявку в течении 15 минут</p>
+                            <p class="main_btn_desc anim3 wow">Ответим на заявку в течении 15 минут</p>
                         </div>
                     </div>
 
-                    <div class="main_right">
+                    <div class="main_right anim3 wow">
                         <img src="assets/img/home-works.png" alt="works">
                     </div>
 
@@ -125,23 +144,23 @@
         <div class="container">
             <div class="calc">
                 <div class="heading">
-                    <h2>Калькулятор стоимости проекта + бонус</h2>
-                    <p class="heading_desc">Ответьте на 5 вопросов теста, чтобы получить персональное КП</p>
+                    <h2 class="anim1 wow">Калькулятор стоимости проекта + бонус</h2>
+                    <p class="heading_desc anim2 wow">Ответьте на 5 вопросов теста, чтобы получить персональное КП</p>
                 </div>
 
                 <div class="calc_body">
                     <div class="calc_left">
                         <div class="questions">
-                            <a href="#" class="question question_1">Вопрос 1</a>
-                            <a href="#" class="question question_1">Вопрос 2</a>
-                            <a href="#" class="question question_1">Вопрос 3</a>
-                            <a href="#" class="question question_1">Вопрос 4</a>
-                            <a href="#" class="question question_1">Вопрос 5</a>
+                            <a class="question question_1 anim4 wow">Вопрос 1</a>
+                            <a class="question question_1 anim4 wow">Вопрос 2</a>
+                            <a class="question question_1 anim4 wow">Вопрос 3</a>
+                            <a class="question question_1 anim4 wow">Вопрос 4</a>
+                            <a class="question question_1 anim4 wow">Вопрос 5</a>
                         </div>
 
                         <div class="quiz_body">
                             <div class="quiz_item quiz_item_1">
-                                <h4>Давайте начнем с того, какая у Вас цель?</h4>
+                                <h4 class="anim1 wow">Давайте начнем с того, какая у Вас цель?</h4>
                                 
                             </div>
                         </div>
@@ -149,31 +168,31 @@
                     </div>
 
                     <div class="calc_right">
-                        <img src="assets/img/icons/bonus.jpg" alt="Bonus">
-                        <p>Ответьте на несколько вопросов, после чего мы сориентируем Вас по стоимости</p>
+                        <img src="assets/img/icons/bonus.jpg" alt="Bonus" class="anim1 wow">
+                        <p class="anim1 wow">Ответьте на несколько вопросов, после чего мы сориентируем Вас по стоимости</p>
                         <div class="bonus_list">
 
                             <div class="bonus_item">
-                                <img src="assets/img/icons/bonus-1.png" alt="">
+                                <img class="anim1 wow" src="assets/img/icons/bonus-1.png" alt="">
                                 <div class="item_desc">
-                                    <p>Прайс на все наши услуги</p>
-                                    <a href="#">Получить сейчас</a>
+                                    <p class="anim2 wow">Прайс на все наши услуги</p>
+                                    <a class="anim3 wow" href="#">Получить сейчас</a>
                                 </div>
                             </div>
 
                             <div class="bonus_item">
-                                <img src="assets/img/icons/bonus-2.png" alt="">
+                                <img class="anim1 wow" src="assets/img/icons/bonus-2.png" alt="">
                                 <div class="item_desc">
-                                    <p>PDF-презентацию: Персональное КП-РЕШЕНИЕ вашей задачи со стоимостью и сроками</p>
-                                    <a href="#">Получить сейчас</a>
+                                    <p class="anim2 wow">PDF-презентацию: Персональное КП-РЕШЕНИЕ вашей задачи со стоимостью и сроками</p>
+                                    <a class="anim3 wow" href="#">Получить сейчас</a>
                                 </div>
                             </div>
 
                             <div class="bonus_item">
-                                <img src="assets/img/icons/bonus-3.png" alt="">
+                                <img class="anim1 wow" src="assets/img/icons/bonus-3.png" alt="">
                                 <div class="item_desc">
-                                    <p>Личную консультацию руководителя Богдана Козарика</p>
-                                    <a href="#">Получить сейчас</a>
+                                    <p class="anim2 wow">Личную консультацию руководителя Богдана Козарика</p>
+                                    <a class="anim3 wow" href="#">Получить сейчас</a>
                                 </div>
                             </div>
 
@@ -189,91 +208,188 @@
     <section id="portfolio">
         <div class="portfolio">
             <div class="heading">
-                <h2>Наше портфолио - не просто сайты. За каждым целая история,
+                <h2 class="anim1 wow">Наше портфолио - не просто сайты. За каждым целая история,
                     которую картинкой или ссылкой не покажешь</h2>
-                <p class="heading_desc">Всего у нас больше 200+ проектов по всему СНГ, ниже представлены некоторые из
+                <p class="heading_desc anim2 wow">Всего у нас больше 200+ проектов по всему СНГ, ниже представлены некоторые из
                     них. Кейсы, ссылки - по запросу</p>
             </div>
 
             <div class="portfolio_list">
 
-
-
                 <div class="portfolio_item" style="background-image: url(assets/img/portfolio/01.jpg);">
                     <div class="case_desc">
-                        <a href="#">Быстрый просмотр</a>
-                    </div>
-
-                    <div class="fast_view">
-
-                    </div>
-                </div>
-
-
-                <div class="portfolio_item" style="background-image: url(assets/img/portfolio/01.jpg);">
-                    <div class="case_desc">
-                        <a href="#">Быстрый просмотр</a>
-                    </div>
-
-                    <div class="fast_view">
-
+                        <a href="case-1" class="open_fast_view">Быстрый просмотр</a>
                     </div>
                 </div>
 
                 <div class="portfolio_item" style="background-image: url(assets/img/portfolio/01.jpg);">
                     <div class="case_desc">
-                        <a href="#">Быстрый просмотр</a>
-                    </div>
-
-                    <div class="fast_view">
-
-                    </div>
-                </div>
-                
-
-                <div class="portfolio_item" style="background-image: url(assets/img/portfolio/01.jpg);">
-                    <div class="case_desc">
-                        <a href="#">Быстрый просмотр</a>
-                    </div>
-
-                    <div class="fast_view">
-
-                    </div>
-                </div>
-
-
-                <div class="portfolio_item" style="background-image: url(assets/img/portfolio/01.jpg);">
-                    <div class="case_desc">
-                        <a href="#">Быстрый просмотр</a>
-                    </div>
-
-                    <div class="fast_view">
-
+                        <a href="case-2" class="open_fast_view">Быстрый просмотр</a>
                     </div>
                 </div>
 
                 <div class="portfolio_item" style="background-image: url(assets/img/portfolio/01.jpg);">
                     <div class="case_desc">
-                        <a href="#">Быстрый просмотр</a>
-                    </div>
-
-                    <div class="fast_view">
-
+                        <a href="case-3" class="open_fast_view">Быстрый просмотр</a>
                     </div>
                 </div>
-
-
-
-
-
-
-
 
             </div>
 
 
+            <div class="cases_list">
+                
+                <div class="case_item_fw" id="case-1">
+                    <div class="fw_content">
+                        <div class="close"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 32 32"><path fill="currentColor" d="M24 9.4L22.6 8L16 14.6L9.4 8L8 9.4l6.6 6.6L8 22.6L9.4 24l6.6-6.6l6.6 6.6l1.4-1.4l-6.6-6.6L24 9.4z"/></svg></div>
+                         <div class="fw_left">
+                            <div class="fw_img">
+                                <img src="https://paradigma.website/wp-content/uploads/2022/04/Кейс-ЛЕНДИНГ-BestHouse.jpg" alt="">
+                            </div>
+                         </div>
+
+                         <div class="fw_right">
+                            <h5>Лендинг для строительной компании во Франции</h5>
+                            <div class="fw_sub">
+                                <a href="#">Смотреть сайт</a>
+                                <a href="#">Смотреть кейс (дизайн)</a>
+                            </div>
+                            <div class="fw_desc">
+                                <h4>Особенности реализации проекта:</h4>
+                                <div class="desc_list">
+                                    <p>Тариф "Маркетинговая связка"</p>
+                                    <p>Тариф "Маркетинговая связка"</p>
+                                    <p>Тариф "Маркетинговая связка"</p>
+                                    <p>Тариф "Маркетинговая связка"</p>
+                                    <p>Тариф "Маркетинговая связка"</p>
+                                    <p>Тариф "Маркетинговая связка"</p>
+                                    <p>Тариф "Маркетинговая связка"</p>
+                                </div>
+                            </div>
+                            <div class="fw_form">
+                                <h3>Получите прайс прямо сейчас:</h3>
+                                <form action="">
+                                    <input type="text" name="" id="" placeholder="Ваш телефон в WhatsApp или Viber">
+                                    <input type="text" name="" id="" placeholder="Ваш телефон в WhatsApp или Viber">
+                                    <button>Получить прайс сейчас</button>
+                                </form>
+                                <div class="soc">
+                                    <p>Задайте вопрос, мы онлайн</p>
+                                    <div class="soc_list">
+                                        <a href="#"><img src="assets/img/icons/serv_wa.svg" alt="Whatsapp"></a>
+                                        <a href="#"><img src="assets/img/icons/serv_tg.svg" alt="Telegram"></a>
+                                        <a href="#"><img src="assets/img/icons/serv_vb.svg" alt="Viber"></a>
+                                    </div>
+                                </div>
+
+                                
+                            </div>
+                         </div>
+                    </div>
+                </div>
+
+                <div class="case_item_fw" id="case-2">
+                    <div class="fw_content">
+                        <div class="close"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 32 32"><path fill="currentColor" d="M24 9.4L22.6 8L16 14.6L9.4 8L8 9.4l6.6 6.6L8 22.6L9.4 24l6.6-6.6l6.6 6.6l1.4-1.4l-6.6-6.6L24 9.4z"/></svg></div>
+                         <div class="fw_left">
+                            <div class="fw_img">
+                                <img src="https://paradigma.website/wp-content/uploads/2022/05/Кейс.png" alt="">
+                            </div>
+                         </div>
+
+                         <div class="fw_right">
+                            <h5>Лендинг для строительной компании во Франции</h5>
+                            <div class="fw_sub">
+                                <a href="#">Смотреть сайт</a>
+                                <a href="#">Смотреть кейс (дизайн)</a>
+                            </div>
+                            <div class="fw_desc">
+                                <h4>Особенности реализации проекта:</h4>
+                                <div class="desc_list">
+                                    <p>Тариф "Маркетинговая связка"</p>
+                                    <p>Тариф "Маркетинговая связка"</p>
+                                    <p>Тариф "Маркетинговая связка"</p>
+                                    <p>Тариф "Маркетинговая связка"</p>
+                                    <p>Тариф "Маркетинговая связка"</p>
+                                    <p>Тариф "Маркетинговая связка"</p>
+                                    <p>Тариф "Маркетинговая связка"</p>
+                                </div>
+                            </div>
+                            <div class="fw_form">
+                                <h3>Получите прайс прямо сейчас:</h3>
+                                <form action="">
+                                    <input type="text" name="" id="" placeholder="Ваш телефон в WhatsApp или Viber">
+                                    <input type="text" name="" id="" placeholder="Ваш телефон в WhatsApp или Viber">
+                                    <button>Получить прайс сейчас</button>
+                                </form>
+                                <div class="soc">
+                                    <p>Задайте вопрос, мы онлайн</p>
+                                    <div class="soc_list">
+                                        <a href="#"><img src="assets/img/icons/serv_wa.svg" alt="Whatsapp"></a>
+                                        <a href="#"><img src="assets/img/icons/serv_tg.svg" alt="Telegram"></a>
+                                        <a href="#"><img src="assets/img/icons/serv_vb.svg" alt="Viber"></a>
+                                    </div>
+                                </div>
+
+                                
+                            </div>
+                         </div>
+                    </div>
+                </div>
+
+                <div class="case_item_fw" id="case-3">
+                    <div class="fw_content">
+                        <div class="close"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 32 32"><path fill="currentColor" d="M24 9.4L22.6 8L16 14.6L9.4 8L8 9.4l6.6 6.6L8 22.6L9.4 24l6.6-6.6l6.6 6.6l1.4-1.4l-6.6-6.6L24 9.4z"/></svg></div>
+                         <div class="fw_left">
+                            <div class="fw_img">
+                                <img src="https://paradigma.website/wp-content/uploads/2022/07/042955.jpg" alt="">
+                            </div>
+                         </div>
+
+                         <div class="fw_right">
+                            <h5>Лендинг для строительной компании во Франции</h5>
+                            <div class="fw_sub">
+                                <a href="#">Смотреть сайт</a>
+                                <a href="#">Смотреть кейс (дизайн)</a>
+                            </div>
+                            <div class="fw_desc">
+                                <h4>Особенности реализации проекта:</h4>
+                                <div class="desc_list">
+                                    <p>Тариф "Маркетинговая связка"</p>
+                                    <p>Тариф "Маркетинговая связка"</p>
+                                    <p>Тариф "Маркетинговая связка"</p>
+                                    <p>Тариф "Маркетинговая связка"</p>
+                                    <p>Тариф "Маркетинговая связка"</p>
+                                    <p>Тариф "Маркетинговая связка"</p>
+                                    <p>Тариф "Маркетинговая связка"</p>
+                                </div>
+                            </div>
+                            <div class="fw_form">
+                                <h3>Получите прайс прямо сейчас:</h3>
+                                <form action="">
+                                    <input type="text" name="" id="" placeholder="Ваш телефон в WhatsApp или Viber">
+                                    <input type="text" name="" id="" placeholder="Ваш телефон в WhatsApp или Viber">
+                                    <button>Получить прайс сейчас</button>
+                                </form>
+                                <div class="soc">
+                                    <p>Задайте вопрос, мы онлайн</p>
+                                    <div class="soc_list">
+                                        <a href="#"><img src="assets/img/icons/serv_wa.svg" alt="Whatsapp"></a>
+                                        <a href="#"><img src="assets/img/icons/serv_tg.svg" alt="Telegram"></a>
+                                        <a href="#"><img src="assets/img/icons/serv_vb.svg" alt="Viber"></a>
+                                    </div>
+                                </div>
+
+                                
+                            </div>
+                         </div>
+                    </div>
+                </div
+
+            </div>
+
             <div class="portfolio_more">
-                <a href="#" class="more_btn">Смотреть все работы</a>
+                <a href="#" class="more_btn anim1 wow">Смотреть все работы</a>
             </div>
         </div>
     </section>
@@ -284,17 +400,17 @@
             <div class="action">
                 <div class="action__top">
                     <div class="action__left">
-                        <span>Дайте угадаем</span>
-                        <h2>В 95% случаев Ваша задача <s>разработать сайт</s> и <span>получить заявки</span></h2>
-                        <h3>Но Огорчим Вас... <img src="assets/img/icons/action-smile.svg" alt=""></h3>
-                        <p>Разработав сайт и запустив трафик - это <b>ПРОВАЛ</b> <br>
+                        <span class="anim1 wow">Дайте угадаем</span>
+                        <h2 class="anim2 wow">В 95% случаев Ваша задача <s>разработать сайт</s> и <span>получить заявки</span></h2>
+                        <h3 class="anim3 wow">Но Огорчим Вас... <img src="assets/img/icons/action-smile.svg" alt=""></h3>
+                        <p class="anim3 wow">Разработав сайт и запустив трафик - это <b>ПРОВАЛ</b> <br>
                             ничего не получится... хотя в 2013 это работало на УРА</p>
                     </div>
-                    <div class="action__right">
+                    <div class="action__right anim1 wow">
                         <img src="assets/img/action-img.png" alt="">
                     </div>
                 </div>
-                <div class="action_bottom">
+                <div class="action_bottom anim1 wow">
                     <h4><b>В 2022 году</b>, чтобы продавать через интернет и стать <b>№1</b> необходимо
                         <span>ТОЧЕЧНО определить решение</span>
                         инструментов) исходя из Ваших бизнес задач, что и делаем мы</h4>
@@ -311,22 +427,22 @@
         <div class="container">
             <div class="services">
                 <div class="services_heading">
-                    <h2>Услуги</h2>
-                    <p>ТОП - 5 продуктов и решений, <br>
+                    <h2 class="anim1 wow">Услуги</h2>
+                    <p class="anim2 wow">ТОП - 5 продуктов и решений, <br>
                         которые сейчас увеличивают продажи</p>
                 </div>
 
                 <div class="services_nav">
-                    <div class="nav_item active"><a href="serv_1">Квизы и лид-магниты 2022</a></div>
-                    <div class="nav_item"><a href="serv_2">Продающий лендинг 2022</a></div>
-                    <div class="nav_item"><a href="serv_3">Маркетинговая связка 2022</a></div>
-                    <div class="nav_item"><a href="serv_4">Многостраничный продающий сайт с лендингами на CMS</a></div>
-                    <div class="nav_item"><a href="serv_5">Продающий сайт с лендингами на CMS и каталогом</a></div>
+                    <div class="anim4 wow nav_item active"><a href="serv_1">Квизы и лид-магниты 2022</a></div>
+                    <div class="anim4 wow nav_item"><a href="serv_2">Продающий лендинг 2022</a></div>
+                    <div class="anim4 wow nav_item"><a href="serv_3">Маркетинговая связка 2022</a></div>
+                    <div class="anim4 wow nav_item"><a href="serv_4">Многостраничный продающий сайт с лендингами на CMS</a></div>
+                    <div class="anim4 wow nav_item"><a href="serv_5">Продающий сайт с лендингами на CMS и каталогом</a></div>
                 </div>
 
                 <div class="services_list">
 
-                    <div id="serv_1" class="serv_item active">
+                    <div id="serv_1" class="anim1 wow serv_item active">
                         <div class="serv_item_left">
                             <div class="quiz_left_cont">
                                 <h4>Квиз-сайт</h4>
@@ -377,7 +493,7 @@
                         </div>
                     </div>
 
-                    <div id="serv_2" class="serv_item">
+                    <div id="serv_2" class="anim1 wow serv_item">
                         <div class="serv_item_left">
                             <div class="quiz_left_cont">
                                 <h4>Квиз-сайт 2</h4>
@@ -428,7 +544,7 @@
                         </div>
                     </div>
 
-                    <div id="serv_3" class="serv_item">
+                    <div id="serv_3" class="anim1 wow serv_item">
                         <div class="serv_item_left">
                             <div class="quiz_left_cont">
                                 <h4>Квиз-сайт 3</h4>
@@ -479,7 +595,7 @@
                         </div>
                     </div>
 
-                    <div id="serv_4" class="serv_item">
+                    <div id="serv_4" class="anim1 wow serv_item">
                         <div class="serv_item_left">
                             <div class="quiz_left_cont">
                                 <h4>Квиз-сайт 4</h4>
@@ -530,7 +646,7 @@
                         </div>
                     </div>
 
-                    <div id="serv_5" class="serv_item">
+                    <div id="serv_5" class="anim1 wow serv_item">
                         <div class="serv_item_left">
                             <div class="quiz_left_cont">
                                 <h4>Квиз-сайт 5</h4>
@@ -593,9 +709,9 @@
     <section id="portfolio">
         <div class="portfolio">
             <div class="heading">
-                <h2>Возьмем на себя все процессы под ключ <br>
+                <h2 class="anim1 wow">Возьмем на себя все процессы под ключ <br>
                     с гарантией заявок</h2>
-                <p class="heading_desc">Дополнительные наши услуги</p>
+                <p class="heading_desc anim2 wow">Дополнительные наши услуги</p>
             </div>
 
             <div class="portfolio_list">
@@ -676,7 +792,7 @@
 
 
             <div class="portfolio_more">
-                <a href="#" class="more_btn">Смотреть все работы</a>
+                <a href="#" class="more_btn anim1 wow">Смотреть все работы</a>
             </div>
         </div>
     </section>
@@ -684,13 +800,13 @@
     <section id="doc">
         <div class="container">
             <div class="doc">
-                <h2>Вы получите персональное КП и ГАРАНТИИ НЕ НА СЛОВАХ, а в договоре</h2>
+                <h2 class="anim1 wow">Вы получите персональное КП и ГАРАНТИИ НЕ НА СЛОВАХ, а в договоре</h2>
 
                 <div class="doc_content">
                     <h3>В договоре черным по белому прописываем и соблюдаем</h3>
                     <div class="doc_list">
 
-                        <div class="doc_item">
+                        <div class="doc_item anim2 wow">
                             <img src="assets/img/icons/doc_1.png" alt="">
                             <div class="item_desc">
                                 <h4>Сроки:</h4>
@@ -699,7 +815,7 @@
                             </div>
                         </div>
 
-                        <div class="doc_item">
+                        <div class="doc_item anim2 wow">
                             <img src="assets/img/icons/doc_2.png" alt="">
                             <div class="item_desc">
                                 <h4>FIX PRICE:</h4>
@@ -707,7 +823,7 @@
                             </div>
                         </div>
 
-                        <div class="doc_item">
+                        <div class="doc_item anim2 wow">
                             <img src="assets/img/icons/doc_3.png" alt="">
                             <div class="item_desc">
                                 <h4>Поэтапная оплата:</h4>
@@ -718,7 +834,7 @@
 
                     </div>
 
-                    <a class="doc_bottom" href="#">Смотреть шаблон договора</a>
+                    <a class="doc_bottom anim3 wow" href="#">Смотреть шаблон договора</a>
 
                 </div>
             </div>
@@ -729,22 +845,22 @@
         <div class="container">
             <div class="services">
                 <div class="services_heading adv_heading">
-                    <h2>План работы</h2>
-                    <p>6 ключевых этапов, почему наши <br>
+                    <h2 class="anim1 wow">План работы</h2>
+                    <p class="anim2 wow">6 ключевых этапов, почему наши <br>
                         сайты так результативны</p>
                 </div>
 
                 <div class="adv_nav">
-                    <div class="nav_item active"><a href="adv_1">Квизы и лид-магниты 2022</a></div>
-                    <div class="nav_item"><a href="adv_2">Продающий лендинг 2022</a></div>
-                    <div class="nav_item"><a href="adv_3">Маркетинговая связка 2022</a></div>
-                    <div class="nav_item"><a href="adv_4">Многостраничный продающий сайт с лендингами на CMS</a></div>
-                    <div class="nav_item"><a href="adv_5">Продающий сайт с лендингами на CMS и каталогом</a></div>
+                    <div class="nav_item anim4 wow active"><a href="adv_1">Квизы и лид-магниты 2022</a></div>
+                    <div class="nav_item anim4 wow"><a href="adv_2">Продающий лендинг 2022</a></div>
+                    <div class="nav_item anim4 wow"><a href="adv_3">Маркетинговая связка 2022</a></div>
+                    <div class="nav_item anim4 wow"><a href="adv_4">Многостраничный продающий сайт с лендингами на CMS</a></div>
+                    <div class="nav_item anim4 wow"><a href="adv_5">Продающий сайт с лендингами на CMS и каталогом</a></div>
                 </div>
 
                 <div class="services_list adv_list">
 
-                    <div id="adv_1" class="adv_item active">
+                    <div id="adv_1" class="adv_item anim1 wow active">
                         <div class="serv_item_right">
                             <img src="assets/img/adv-i.png" alt="">
                         </div>
@@ -796,7 +912,7 @@
                         
                     </div>
 
-                    <div id="adv_2" class="adv_item">
+                    <div id="adv_2" class="adv_item anim1 wow">
                         <div class="serv_item_right">
                             <img src="assets/img/adv-i.png" alt="">
                         </div>
@@ -848,7 +964,7 @@
                         
                     </div>
 
-                    <div id="adv_3" class="adv_item">
+                    <div id="adv_3" class="adv_item anim1 wow">
                         <div class="serv_item_right">
                             <img src="assets/img/adv-i.png" alt="">
                         </div>
@@ -900,7 +1016,7 @@
                         
                     </div>
 
-                    <div id="adv_4" class="adv_item">
+                    <div id="adv_4" class="adv_item anim1 wow">
                         <div class="serv_item_right">
                             <img src="assets/img/adv-i.png" alt="">
                         </div>
@@ -952,7 +1068,7 @@
                         
                     </div>
 
-                    <div id="adv_5" class="adv_item">
+                    <div id="adv_5" class="adv_item anim1 wow">
                         <div class="serv_item_right">
                             <img src="assets/img/adv-i.png" alt="">
                         </div>
@@ -1015,13 +1131,13 @@
         <div class="container">
             <div class="form">
                 <div class="form_left">
-                    <h4>Переходим к действиям</h4>
-                    <h2>В прайсе есть полная стоимость наших услуг</h2>
-                    <p>Кем бы Вы ни были – небольшим стартапом или компанией – Вы станете нашим уважаемым клиентом.</p>
-                    <form action="">
+                    <h4 class="anim1 wow">Переходим к действиям</h4>
+                    <h2 class="anim2 wow">В прайсе есть полная стоимость наших услуг</h2>
+                    <p class="anim3 wow">Кем бы Вы ни были – небольшим стартапом или компанией – Вы станете нашим уважаемым клиентом.</p>
+                    <form action="" class="anim3 wow">
                         <input type="tel" name="tel" id="tel" placeholder="Ваш телефон">
                         <input type="text" name="name" id="name" placeholder="Ваше имя">
-                        <div class="msg">
+                        <div class="msg ">
                             <div class="msg_left">
                                 <p>В каком мессенджере удобно общаться?</p>
                                 <div class="msg_list">
@@ -1057,10 +1173,10 @@
     <section id="we_do">
         <div class="container">
             <div class="we_do">
-                <h2>Будем честными с вами</h2>
+                <h2 class="anim1 wow">Будем честными с вами</h2>
                 <div class="we_do_list">
 
-                    <div class="we_item">
+                    <div class="we_item anim1 wow">
                         <img src="assets/img/icons/we_1.png" alt="">
                         <div class="we_desc">
                             <h3>Мы не сделаем вам гавно-сайт</h3>
@@ -1068,7 +1184,7 @@
                         </div>
                     </div>
 
-                    <div class="we_item">
+                    <div class="we_item anim2 wow">
                         <img src="assets/img/icons/we_2.png" alt="">
                         <div class="we_desc">
                             <h3>Мы не сделаем вам гавно-сайт</h3>
@@ -1076,7 +1192,7 @@
                         </div>
                     </div>
 
-                    <div class="we_item">
+                    <div class="we_item anim3 wow">
                         <img src="assets/img/icons/we_3.png" alt="">
                         <div class="we_desc">
                             <h3>Мы не сделаем вам гавно-сайт</h3>
@@ -1084,7 +1200,7 @@
                         </div>
                     </div>
 
-                    <div class="we_item">
+                    <div class="we_item anim1 wow">
                         <img src="assets/img/icons/we_4.png" alt="">
                         <div class="we_desc">
                             <h3>Мы не сделаем вам гавно-сайт</h3>
@@ -1092,7 +1208,7 @@
                         </div>
                     </div>
 
-                    <div class="we_item">
+                    <div class="we_item anim2 wow">
                         <img src="assets/img/icons/we_5.png" alt="">
                         <div class="we_desc">
                             <h3>Мы не сделаем вам гавно-сайт</h3>
@@ -1100,7 +1216,7 @@
                         </div>
                     </div>
 
-                    <div class="we_item">
+                    <div class="we_item anim3 wow">
                         <img src="assets/img/icons/we_6.png" alt="">
                         <div class="we_desc">
                             <h3>Мы не сделаем вам гавно-сайт</h3>
@@ -1116,53 +1232,53 @@
     <section id="we_know">
         <div class="container">
             <div class="we_know">
-                <h2>Знаем всю «соль» разработки сайтов у других и <br> поэтому в нашей студии особый подход</h2>
+                <h2 class="anim1 wow">Знаем всю «соль» разработки сайтов у других и <br> поэтому в нашей студии особый подход</h2>
 
                 <div class="know_list">
 
-                    <div class="know_item">
+                    <div class="know_item anim1 wow">
                         <img src="assets/img/icons/know_1.png" alt="">
                         <h3>У вас личный руководитель проектов</h3>
                         <p>в подчинении, на связи 7 дней в неделю</p>
                     </div>
 
-                    <div class="know_item">
+                    <div class="know_item anim2 wow">
                         <img src="assets/img/icons/know_2.png" alt="">
                         <h3>У вас личный руководитель проектов</h3>
                         <p>в подчинении, на связи 7 дней в неделю</p>
                     </div>
 
-                    <div class="know_item">
+                    <div class="know_item anim3 wow">
                         <img src="assets/img/icons/know_3.png" alt="">
                         <h3>У вас личный руководитель проектов</h3>
                         <p>в подчинении, на связи 7 дней в неделю</p>
                     </div>
 
-                    <div class="know_item">
+                    <div class="know_item anim3-1 wow">
                         <img src="assets/img/icons/know_4.png" alt="">
                         <h3>У вас личный руководитель проектов</h3>
                         <p>в подчинении, на связи 7 дней в неделю</p>
                     </div>
 
-                    <div class="know_item">
+                    <div class="know_item anim1 wow">
                         <img src="assets/img/icons/know_5.png" alt="">
                         <h3>У вас личный руководитель проектов</h3>
                         <p>в подчинении, на связи 7 дней в неделю</p>
                     </div>
 
-                    <div class="know_item">
+                    <div class="know_item anim2 wow">
                         <img src="assets/img/icons/know_6.png" alt="">
                         <h3>У вас личный руководитель проектов</h3>
                         <p>в подчинении, на связи 7 дней в неделю</p>
                     </div>
 
-                    <div class="know_item">
+                    <div class="know_item anim3 wow">
                         <img src="assets/img/icons/know_7.png" alt="">
                         <h3>У вас личный руководитель проектов</h3>
                         <p>в подчинении, на связи 7 дней в неделю</p>
                     </div>
 
-                    <div class="know_item">
+                    <div class="know_item anim3-1 wow">
                         <img src="assets/img/icons/know_8.png" alt="">
                         <h3>У вас личный руководитель проектов</h3>
                         <p>в подчинении, на связи 7 дней в неделю</p>
@@ -1177,14 +1293,14 @@
     <section id="about_work">
         <div class="container">
             <div class="about_work">
-                <div class="about_left">
+                <div class="about_left anim1 wow">
                     <img src="assets/img/about-img.png" alt="">
                 </div>
                 <div class="about_right">
-                    <h3>О нашей работе</h3>
-                    <h2>У нас Вы почувствуете себя как в большой дружной семье, где Вас всегда готовы выслушать,
+                    <h3 class="anim1 wow">О нашей работе</h3>
+                    <h2 class="anim2 wow">У нас Вы почувствуете себя как в большой дружной семье, где Вас всегда готовы выслушать,
                         разъяснить то, что не понятно, и дать дельный совет. </h2>
-                    <p>
+                    <p class="anim3 wow">
                         Активно взаимодействуя с нами, Вы будете заранее знать, какой именно результат Вы получите.
                         Стоит ли говорить, что он Вам понравится?
                         <br> <br>
@@ -1199,13 +1315,13 @@
         <div class="container">
             <div class="form">
                 <div class="form_left">
-                    <h4>Переходим к действиям</h4>
-                    <h2>В прайсе есть полная стоимость наших услуг</h2>
-                    <p>Кем бы Вы ни были – небольшим стартапом или компанией – Вы станете нашим уважаемым клиентом.</p>
-                    <form action="">
+                    <h4 class="anim1 wow">Переходим к действиям</h4>
+                    <h2 class="anim2 wow">В прайсе есть полная стоимость наших услуг</h2>
+                    <p class="anim3 wow">Кем бы Вы ни были – небольшим стартапом или компанией – Вы станете нашим уважаемым клиентом.</p>
+                    <form action="" class="anim3 wow">
                         <input type="tel" name="tel" id="tel" placeholder="Ваш телефон">
                         <input type="text" name="name" id="name" placeholder="Ваше имя">
-                        <div class="msg">
+                        <div class="msg ">
                             <div class="msg_left">
                                 <p>В каком мессенджере удобно общаться?</p>
                                 <div class="msg_list">
@@ -1241,12 +1357,12 @@
     <section id="blog">
         <div class="container">
             <div class="blog">
-                <h2> Если Вы хотите побольше узнать о разработке сайтов, SEO-продвижении, инструментах цифрового маркетинга,
+                <h2 class="anim1 wow"> Если Вы хотите побольше узнать о разработке сайтов, SEO-продвижении, инструментах цифрового маркетинга,
                     наш блог может стать Вашей настольной книгой. </h2>
-                <p> В нём мы подробно рассказываем о том, что происходит после того, как мы <br> приступаем к работе над Вашим
+                <p class="anim2 wow"> В нём мы подробно рассказываем о том, что происходит после того, как мы <br> приступаем к работе над Вашим
                     заказом, и приводим практические примеры. </p>
     
-                <div class="blog_list">
+                <div class="blog_list anim3 wow">
                     <div class="blog_item">
                         <img src="assets/img/blog-1.png" alt="">
                         <h4>Business Strategy</h4>
@@ -1277,7 +1393,7 @@
         <div class="container">
             <div class="footer">
 
-                <div class="header footer_header">
+                <div class="header footer_header anim1 wow">
 
                     <div class="logo">
                         <img src="assets/img/icons/logo-w.svg" alt="Logo">
@@ -1314,7 +1430,7 @@
                         сейчас</a>
                 </div>
 
-                <div class="nav footer_nav">
+                <div class="nav footer_nav anim2 wow">
                     <a href="#">Главная</a>
                     <a href="#">Расчет стоимости</a>
                     <a href="#">Портфолио</a>
@@ -1327,7 +1443,7 @@
                     <a href="#">Контакты</a>
                 </div>
 
-                <div class="footer_bottom">
+                <div class="footer_bottom anim3 wow">
                     <p class="copy">Unite Design © Copyright <b>2017-2022</b></p>
                     <p>Копирование материалов сайта запрещено законом</p>
                 </div>
@@ -1336,7 +1452,6 @@
         </div>
     </footer>
 
-    <script src="assets/js/main.js"></script>
 </body>
 
 </html>

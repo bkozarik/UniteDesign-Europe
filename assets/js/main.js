@@ -44,6 +44,48 @@ window.addEventListener("load", function () {
       myTabs2[i].addEventListener("click", myTabClicks2);
     }
 
+    // adds animation for section cards 
+    window.addEventListener('scroll', (e) => {
+      last_known_scroll_position = window.scrollY;
+      let scrollEl = document.getElementById("calc"); 
+      let header = document.getElementById("main_bg"); 
+      if(scrollEl.offsetTop < last_known_scroll_position){
+        header.classList.add("header_open");
+      }else{
+        header.classList.remove("header_open");
+      }
 
+    });
+
+    $(".open_fast_view").click(function() {
+      $('body').addClass('overflow');
+    });
+    $(".close").click(function() {
+      $('body').removeClass('overflow');
+      $('.case_item_fw').removeClass('fw_open');
+    });
+
+
+    // store tabs variable
+    var myTabs3 = document.querySelectorAll(".open_fast_view");
+    function myTabClicks3(tabClickEvent) {
+      for (var i = 0; i < myTabs3.length; i++) {
+        myTabs3[i].classList.remove("active");
+      }
+      var clickedTab3 = tabClickEvent.currentTarget;
+      clickedTab3.classList.add("active");
+      tabClickEvent.preventDefault();
+      var myContentPanes3 = document.querySelectorAll(".case_item_fw");      
+      for (i = 0; i < myContentPanes3.length; i++) {
+        myContentPanes3[i].classList.remove("active");
+      }
+      var anchorReference3 = tabClickEvent.target;
+      var activePaneId3 = anchorReference3.getAttribute("href");
+      var activePane3 = document.getElementById(activePaneId3);
+      activePane3.classList.add("fw_open");
+    }
+    for (i = 0; i < myTabs3.length; i++) {
+      myTabs3[i].addEventListener("click", myTabClicks3);
+    }
   });
   
