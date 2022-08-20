@@ -96,6 +96,10 @@ a {
   /* or 121% */
   color: #282828;
 }
+.popup .popup_content .popup_l_p {
+  font-size: 1.1vw !important;
+  line-height: 1.367vw !important;
+}
 .popup .popup_content .popup_close {
   cursor: pointer;
   position: absolute;
@@ -109,6 +113,7 @@ a {
 .popup .popup_content form {
   display: flex;
   align-items: flex-end;
+  margin-top: 1.042vw;
   margin-bottom: 1.042vw;
 }
 .popup .popup_content form input {
@@ -249,9 +254,13 @@ header {
   letter-spacing: 0.01vw;
   color: #7A7A7A;
   margin-right: 0.833vw;
+  transition: all 0.4s ease-in-out;
 }
 .header_lang .lang_item:last-child {
   margin-right: 0;
+}
+.header_lang .lang_item:hover {
+  color: #3A3A3A;
 }
 
 .header_blog {
@@ -423,7 +432,7 @@ header {
   font-size: 0.903vw;
   line-height: 1.25vw;
   color: #282828;
-  max-width: 6.944vw;
+  max-width: 7.944vw;
 }
 .main_list .main_item img {
   width: 1.25vw;
@@ -456,6 +465,7 @@ header {
   font-size: 0.903vw;
   line-height: 1.528vw;
   /* or 169% */
+  text-align: left;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: #FFFFFF;
@@ -929,9 +939,20 @@ header {
   box-shadow: none;
 }
 
+.dop_list .portfolio_item:hover::before {
+  opacity: 0 !important;
+}
+.dop_list .portfolio_item:hover {
+  transform: scale(100%) !important;
+  z-index: 1 !important;
+}
+.dop_list .portfolio_item .case_desc {
+  opacity: 1 !important;
+}
+
 .portfolio_list {
   padding-top: 4.306vw;
-  padding-bottom: 2.986vw;
+  padding-bottom: 7.986vw;
   display: flex;
   flex-wrap: wrap;
   overflow: hidden;
@@ -1435,8 +1456,8 @@ div.adv_heading::after {
   font-family: "Manrope";
   font-style: normal;
   font-weight: 600;
-  font-size: 2.5vw;
-  line-height: 3.056vw;
+  font-size: 2.2vw;
+  line-height: 2.756vw;
   /* or 122% */
   padding: 0.556vw 0 1.25vw;
   color: #282828;
@@ -1612,6 +1633,8 @@ div.adv_heading::after {
 }
 .we_do_list .we_item img {
   width: 9.028vw;
+  height: 100%;
+  object-fit: contain;
 }
 .we_do_list .we_item .we_desc {
   margin-left: 1.528vw;
@@ -1629,7 +1652,8 @@ div.adv_heading::after {
   font-size: 0.833vw;
   line-height: 1.042vw;
   /* identical to box height, or 122% */
-  color: #FFFFFF;
+  color: #ededed;
+  margin-top: 0.319vw;
 }
 
 #we_know {
@@ -2032,7 +2056,7 @@ footer .nav::after {
 
 /* Customize the label (the container) */
 .no_know {
-  margin-right: 25px;
+  margin-right: 1.736vw;
   display: block;
   position: relative;
   padding-left: 1.25vw;
@@ -2112,14 +2136,14 @@ footer .nav::after {
 
 .quiz_next_btn {
   background: linear-gradient(97.69deg, #FF0003 10.71%, #FF5657 95.11%);
-  box-shadow: 0px 10px 20px rgba(255, 51, 52, 0.2);
-  border-radius: 130px;
-  padding: 15px 38px;
+  box-shadow: 0vw 0.694vw 1.389vw rgba(255, 51, 52, 0.2);
+  border-radius: 9.028vw;
+  padding: 1.042vw 2.639vw;
   font-family: "Manrope";
   font-style: normal;
   font-weight: 600;
-  font-size: 16px;
-  line-height: 16px;
+  font-size: 1.111vw;
+  line-height: 1.111vw;
   /* or 100% */
   text-align: center;
   transition: all 0.4s ease-in-out;
