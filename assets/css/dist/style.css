@@ -143,6 +143,7 @@ a {
 
 .header_open header {
   position: fixed;
+  background: #fff;
 }
 .header_open .header {
   padding: 0.6vw 0 1vw;
@@ -153,7 +154,6 @@ header {
   top: 0;
   left: 0;
   z-index: 20;
-  background: #fff;
   width: 100%;
 }
 
@@ -2151,4 +2151,10 @@ footer .nav::after {
 }
 .quiz_next_btn:hover {
   box-shadow: none;
+}
+
+@media (max-width: 500px) {
+  .header_lang, .header_blog, .header_nav {
+    display: none;
+  }
 }

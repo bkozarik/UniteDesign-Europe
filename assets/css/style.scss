@@ -149,6 +149,7 @@ a {
 .header_open {
     header {
         position: fixed;
+        background: #fff;
     }
     .header {
         padding: 0.6vw 0 1vw;
@@ -159,7 +160,7 @@ header {
     top: 0;
     left: 0;
     z-index: 20;
-    background: #fff;
+    
     width: 100%;
 }
 .header {
@@ -2287,5 +2288,11 @@ footer {
     color: #FFFFFF;
     &:hover {
         box-shadow: none;
+    }
+  }
+
+  @media(max-width: 500px) {
+    .header_lang, .header_blog, .header_nav {
+        display: none;
     }
   }
