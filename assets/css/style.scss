@@ -398,6 +398,7 @@ header {
         font-style: normal;
         font-weight: 400;
         font-size: 1.389vw;
+        max-width: 435px;
         line-height: 1.875vw;
         /* or 135% */
         margin: 1.806vw 0 2.153vw;
@@ -1120,6 +1121,7 @@ header {
             font-size: 2.778vw;
             line-height: 3.819vw;
             /* or 138% */
+            max-width: 500px;
             
             padding-top: 1.181vw;
             color: #282828;
@@ -2340,6 +2342,7 @@ footer {
         font-weight: 400;
         font-size: 28px;
         line-height: 36px;
+        max-width: 540px;
     }
     .main_right {
         width: 537px;
@@ -2842,7 +2845,7 @@ footer {
             font-family: 'Manrope';
             font-style: normal;
             font-weight: 700;
-            font-size: 12px;
+            font-size: 11px;
             line-height: 22px;
             /* identical to box height, or 169% */
             letter-spacing: 0.1em;
@@ -2899,6 +2902,125 @@ footer {
                 }
             }
         }
+    }
+
+    .doc {
+        h2 {
+            max-width: 320px;
+            margin: 0 auto;
+            font-family: 'Manrope';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 28px;
+            line-height: 36px;
+            /* or 121% */
+            
+            text-align: center;
+            
+            color: #282828;
+        }
+    
+    }
+    #doc {
+        position: relative;
+        overflow-x: hidden;
+    }
+    .doc_content {
+        background: none;
+        box-shadow: none;
+        border-radius: 0;
+        padding: 0;
+        position: relative;
+        margin-top: 32px;
+        &::after {
+            content: "";
+            position: absolute;
+            right: -90px;
+            bottom: -90px;
+            background: url(../img/doc-bg.png) no-repeat center;
+            background-size: contain;
+            width: 271px;
+            height: 122px;
+            z-index: -1;
+        }
+        h3 {
+            text-align: center;
+            font-family: 'Montserrat';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 20px;
+            line-height: 27px;
+            /* identical to box height, or 108% */
+            
+            
+            color: #282828;
+        }
+        .doc_bottom {
+            display: none;
+        }
+    }
+    
+    .doc_list {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        flex-direction: column;
+        margin: 40px 0 90px;
+        .doc_item {
+            text-align: left;
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 30px;
+            img {
+                width: 69px;
+                &:last-child {
+                    width: 79px;
+                }
+            }
+            .item_desc {
+                margin-left: 21px;
+                max-width: 320px;
+                h4 {
+                    font-weight: 400;
+                    font-size: 18px;
+                    line-height: 22px;
+                    /* identical to box height, or 125% */
+                    color: #282828;
+                    margin-bottom: 6px;
+                }
+                p {
+                    
+                    font-weight: 400;
+                    font-size: 12px;
+                    line-height: 15px;
+                    color: #282828;
+                    
+                }
+            }
+    
+        }
+    }
+
+    div.adv_heading::after {
+        z-index: -1;
+    }
+    .services_heading h2 {
+        max-width: 320px;
+    }
+    .services_nav, .adv_nav {
+        .nav_item {
+            width: 148px !important;
+            margin-right: 15px;
+            &:nth-child(2n) {
+                margin-right: 0;
+            }
+        }
+    }
+    .services_list .adv_item {
+        flex-direction: column;
+    }
+    .adv_list .adv_item .serv_item_right {
+        margin-left: -35px;
     }
 
 
