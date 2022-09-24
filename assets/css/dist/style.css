@@ -8,6 +8,10 @@
   outline: none;
 }
 
+section {
+  overflow-y: scroll !important;
+}
+
 a {
   color: inherit;
   cursor: pointer;
