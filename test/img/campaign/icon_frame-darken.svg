@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="34" height="38" viewBox="0 0 34 38">
+  <defs>
+    <polygon id="icon_hard_frame-darken-a" points="19 0 35.454 9.5 35.454 28.5 19 38 2.546 28.5 2.546 9.5"/>
+    <mask id="icon_hard_frame-darken-b" width="38" height="38" x="0" y="0" fill="#fff" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox">
+      <use xlink:href="#icon_hard_frame-darken-a"/>
+    </mask>
+  </defs>
+  <use fill="none" fill-rule="evenodd" stroke="#919191" stroke-dasharray="2 2" stroke-width="2" mask="url(#icon_hard_frame-darken-b)" transform="translate(-2)" xlink:href="#icon_hard_frame-darken-a"/>
+</svg>

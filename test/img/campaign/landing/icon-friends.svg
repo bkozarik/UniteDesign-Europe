@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+  <defs>
+    <linearGradient id="icon-friends-a" x1="50.65%" x2="50.65%" y1="1.612%" y2="98.388%">
+      <stop offset="0%" stop-color="#BE43FF"/>
+      <stop offset="100%" stop-color="#A827B8"/>
+    </linearGradient>
+  </defs>
+  <g fill="none" fill-rule="evenodd">
+    <circle cx="24" cy="24" r="24" fill="url(#icon-friends-a)"/>
+    <polygon fill="#FFF" points="24 29.46 15.771 35.326 18.807 25.687 10.685 19.674 20.791 19.583 24 10 27.209 19.583 37.315 19.674 29.193 25.687 32.229 35.326"/>
+  </g>
+</svg>

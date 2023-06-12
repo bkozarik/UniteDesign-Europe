@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="651" height="8" viewBox="0 0 651 8">
+  <defs>
+    <linearGradient id="reward-block-line-top-a" x1="0%" x2="94.505%" y1="50%" y2="50%">
+      <stop offset="0%"/>
+      <stop offset="100%" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <g fill="none" fill-rule="evenodd" transform="translate(-16)">
+    <polygon fill="url(#reward-block-line-top-a)" fill-opacity=".5" points="384.9 2 684 2 684 6 384 6"/>
+    <polygon fill="url(#reward-block-line-top-a)" fill-opacity=".5" points=".9 2 300 2 300 6 0 6" transform="matrix(-1 0 0 1 300 0)"/>
+    <polygon fill="#75CD40" points="239 0 445 0 439 8 245 8"/>
+  </g>
+</svg>

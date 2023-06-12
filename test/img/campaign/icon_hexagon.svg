@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="26" height="30" viewBox="0 0 26 30">
+  <defs>
+    <polygon id="icon_hard_hexagon-a" points="19 7 29.392 13 29.392 25 19 31 8.608 25 8.608 13"/>
+  </defs>
+  <g fill="none" fill-rule="evenodd" transform="translate(-6 -4)">
+    <use fill="#000" fill-opacity=".4" xlink:href="#icon_hard_hexagon-a"/>
+    <path stroke="#000" stroke-opacity=".4" stroke-width="2" d="M19,5.84529946 L30.3923048,12.4226497 L30.3923048,25.5773503 L19,32.1547005 L7.60769515,25.5773503 L7.60769515,12.4226497 L19,5.84529946 Z"/>
+    <path stroke="#5AC0FF" stroke-linejoin="square" stroke-width="3" d="M19,8.73205081 L10.1076952,13.8660254 L10.1076952,24.1339746 L19,29.2679492 L27.8923048,24.1339746 L27.8923048,13.8660254 L19,8.73205081 Z"/>
+  </g>
+</svg>

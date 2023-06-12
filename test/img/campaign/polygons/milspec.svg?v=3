@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="276px" height="280px" viewBox="0 0 276 280" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 46.1 (44463) - http://www.bohemiancoding.com/sketch -->
+    <title>milspec</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="12.1929049%" x2="50%" y2="93.8008961%" id="linearGradient-1">
+            <stop stop-color="#006AE2" stop-opacity="0" offset="0%"></stop>
+            <stop stop-color="#006AE2" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="100%" x2="50%" y2="41.7158019%" id="linearGradient-2">
+            <stop stop-color="#006AE2" offset="0%"></stop>
+            <stop stop-color="#006AE2" stop-opacity="0" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Cases" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Несколько-предметов" transform="translate(-889.000000, -311.000000)">
+            <g id="milspec" transform="translate(889.000000, 272.000000)">
+                <polygon id="Polygon" fill-opacity="0.25" fill="url(#linearGradient-1)" points="138 0 276 79.6743371 276 239.023011 138 318.697349 9.23705556e-14 239.023011 3.55271368e-15 79.6743371"></polygon>
+                <path d="M138,1.15470054 L1,80.2516874 L1,238.445661 L138,317.542648 L275,238.445661 L275,80.2516874 L138,1.15470054 Z" id="Polygon" stroke="url(#linearGradient-2)" stroke-width="2"></path>
+            </g>
+        </g>
+    </g>
+</svg>

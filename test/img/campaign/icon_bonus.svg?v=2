@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>icon_bonus</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="2.26203763%" y1="50%" x2="99.0377361%" y2="50%" id="linearGradient-1">
+            <stop stop-color="#FFBA43" offset="0%"></stop>
+            <stop stop-color="#FF9A30" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icon_bonus">
+            <g id="Oval-4">
+                <g id="path-2-link" fill="#000000" fill-rule="nonzero">
+                    <circle id="path-2" cx="11" cy="11" r="11"></circle>
+                </g>
+                <g id="path-2-link" fill="url(#linearGradient-1)">
+                    <circle id="path-2" cx="11" cy="11" r="11"></circle>
+                </g>
+            </g>
+            <g id="Page-1" transform="translate(3.666667, 4.277778)" fill="#FFFFFF" fill-rule="nonzero">
+                <path d="M8.2827591,12.7646605 L14.3702782,9.23907594 L14.3702782,2.2077243 C13.6268427,2.64075596 12.8838532,3.07378763 12.1404177,3.50681929 L12.1404177,7.94763058 L8.2827591,10.1816803 L4.47103562,7.97447139 C3.72983001,8.40616101 2.98907036,8.83785063 2.24786474,9.26954026 L8.2827591,12.7646605 Z" id="Fill-4"></path>
+                <path d="M6.08751907,0 L0,3.52553982 L0,10.5569362 C0.743435479,10.1239493 1.48642499,9.69087287 2.22986046,9.2578412 L2.22986046,4.81702991 L6.08751907,2.58298019 L9.89924254,4.79018911 C10.6404482,4.35849948 11.3812078,3.92680986 12.1224134,3.49512024 L6.08751907,0 Z" id="Fill-1"></path>
+            </g>
+        </g>
+    </g>
+</svg>
