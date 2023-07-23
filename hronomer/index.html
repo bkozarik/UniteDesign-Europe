@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Хрономер</title>
+	<title>Хронометр</title>
 	<meta name="AUTHOR" content="Copyright 2023">
 	<link rel="stylesheet" type="text/css" href="styles/main.css">
 	<script language="JavaScript" type="text/javascript" src="js/script.js"></script>
@@ -16,7 +16,7 @@
 <body>
 	<div id="header">
 		<img src="images/hrono.webp" alt="">
-		<h1>Хрономер |</h1>
+		<h1>Хронометр |</h1>
 		<p>Визначення хронометражу друкованого <br> тексту</p>
 	</div>
 	<div id="content">
@@ -25,8 +25,62 @@
 
 			</style>
 			<script language="JavaScript">
+
+				function updateCounter(visitCount) {
+					let counter = document.getElementById('counter');
+					let visitCountStr = visitCount.toString().padStart(8, '0');
+					for (let i = 0; i < 8; i++) {
+					let pElement = counter.getElementsByTagName('p')[i];
+					pElement.innerText = visitCountStr[i];
+					}
+					localStorage.setItem('visitCounter', visitCount);
+				}
+			
+				function increaseCounter() {
+					let visitCount = parseInt(localStorage.getItem('visitCounter')) || 0;
+					visitCount++;
+					updateCounter(visitCount);
+				}
+			
+				window.onload = function () {
+					let visitCount = parseInt(localStorage.getItem('visitCounter')) || 0;
+					updateCounter(visitCount);
+				};
+			
+				window.onbeforeunload = function () {
+					increaseCounter();
+				};
 				var hmrHistory = new Array();
 				var hmrHistoryIndex = 0;
+
+
+				function clearText(){
+					document.forms.frmHronomer.tText.value = '';
+					document.getElementById('btn_clear').innerHTML = "";
+					increaseCounter();
+				}
+
+
+				function setHistoryStep(step){
+					hmrHistoryIndex = step;
+					if (hmrHistoryIndex >= 0){
+						document.getElementById('tText').value = hmrHistory[hmrHistoryIndex];
+					}
+					else{
+						document.getElementById('tText').value = "";
+					}
+					CalculateText('2');
+					var HmrBackObj = document.getElementById('btn_prev');
+					var HmrForwardObj = document.getElementById('btn_next');
+
+					if (hmrHistoryIndex > 0){
+						HmrBackObj.innerHTML = '<a class="on" href="javascript:setHistoryStep('+(hmrHistoryIndex-1)+');" title="Очистити">Очистити</a>';
+					}
+					else{
+						HmrBackObj.innerHTML = '<a class="off">Очистити</a>';
+					}
+					
+				}
 
 				function SetScaleLength() {
 					var ScaleEndObj = document.getElementById('scaleend');
@@ -165,7 +219,7 @@
 
 					if (document.getElementById('tText').value != "") {
 						document.getElementById('btn_clear').innerHTML =
-							'<a onclick="clearText();" style="cursor:default;"></a>';
+							'<a id="btn_a_clear" onclick="clearText();" style="cursor:default;">Очистити</a>';
 					}
 
 					if (command == 1) {
@@ -317,7 +371,7 @@
 
 					<div id="hr_input"><textarea id="tText" name="tText"></textarea></div>
 					<div id="hr_clear">
-						<div id="btn_clear"></div>
+						<div id="btn_clear">ОЧИСТИТИ</div>
 					</div>
 					<div id="hr_comments">Вставте у вікно текст, попередньо видаливши з нього ремарки, нотатки, коментарі.</div>
 					<div id="hr_results">
@@ -362,27 +416,29 @@
 	</div>
 	<div class="diktor">
 		<p>Озвучити текст професійним диктором</p>
-		<a href="№" class="btn_link">Озвучити текст</a>
+		<a href="https://aidosmedia.wixsite.com/gdap" class="btn_link">Озвучити текст</a>
 	</div>
 	<footer>
 		<div id="footer">
 
-			<div id="copy">
-				©&nbsp;EgoProduction&nbsp;
-			</div>
+			<a id="copy" href="https://aidosmedia.wixsite.com/gdap" target="_blank">
+				©&nbsp;Beat"ON production&nbsp;
+			</a>
 	
 	
 			<div id="footercounters">
-				<div class="footer_bottom">
-					<p>1</p>
-					<p>3</p>
-					<p>4</p>
+				<div id="counter" class="footer_bottom">
 					<p>0</p>
 					<p>0</p>
-					<p>4</p>
-					<p>1</p>
-					<p>1</p>
+					<p>0</p>
+					<p>0</p>
+					<p>0</p>
+					<p>0</p>
+					<p>0</p>
+					<p>0</p>
 				</div>
+
+
 			</div>
 	
 		</div>
@@ -391,3 +447,6 @@
 </body>
 
 </html>
+
+
+
