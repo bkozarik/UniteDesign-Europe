@@ -74,10 +74,10 @@
 					var HmrForwardObj = document.getElementById('btn_next');
 
 					if (hmrHistoryIndex > 0){
-						HmrBackObj.innerHTML = '<a class="on" href="javascript:setHistoryStep('+(hmrHistoryIndex-1)+');" title="ОЧИСТИТИ">ОЧИСТИТИ</a>';
+						HmrBackObj.innerHTML = '<a class="on" href="javascript:setHistoryStep('+(hmrHistoryIndex-1)+');" title="Очистити">Очистити</a>';
 					}
 					else{
-						HmrBackObj.innerHTML = '<a class="off">ОЧИСТИТИ</a>';
+						HmrBackObj.innerHTML = '<a class="off">Очистити</a>';
 					}
 					
 				}
@@ -219,7 +219,7 @@
 
 					if (document.getElementById('tText').value != "") {
 						document.getElementById('btn_clear').innerHTML =
-							'<a id="btn_a_clear" onclick="clearText();" style="cursor:default;">ОЧИСТИТИ</a>';
+							'<a id="btn_a_clear" onclick="clearText();" style="cursor:default;">Очистити</a>';
 					}
 
 					if (command == 1) {
@@ -371,7 +371,7 @@
 
 					<div id="hr_input"><textarea id="tText" name="tText"></textarea></div>
 					<div id="hr_clear">
-						<div id="btn_clear">ОЧИСТИТИ</div>
+						<div id="btn_clear"></div>
 					</div>
 					<div id="hr_comments">Вставте у вікно текст, попередньо видаливши з нього ремарки, нотатки, коментарі.</div>
 					<div id="hr_results">
