@@ -38,7 +38,7 @@ h1 {
   margin: 0.67em 0;
 }
 .style-blue-btn:after {
-  /* content: ""; */
+  content: ""; 
   width: 1.5625vw;
   height: 15.625vw;
   -webkit-transform: rotate(45deg);
