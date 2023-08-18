@@ -41,6 +41,40 @@
 .pac-container span {
     color: #000 !important;
 }
+.loc_input {
+    position: relative;
+}
+.loc_input .input-group-btn {
+    position: absolute;
+    top: 0px;
+    right: 30px;
+}
+.loc_input .input-group-btn2 {
+    position: absolute;
+    top: 0px;
+    right: 0px !important;
+}
+.loc_input .btn { 
+    padding: 37px 35px;
+    font-weight: 700;
+    border: none;
+    border-left: 1px solid #000;
+    border-radius: 0 100px 100px 0;
+    text-transform: uppercase;
+    color: var(--primary-color);
+    position: relative;
+    overflow: hidden;
+    /* font-size: 20px; */
+    background: transparent;
+}
+.loc_input .btn:hover {
+    border: 1px solid var(--primary-color);
+    padding: 36px 35px;
+}
+.loc_input .btn:hover i {
+    color: var(--primary-color);
+
+}
 .picker a {
     background-color: transparent !important;
     color: #000 !important;
@@ -49,6 +83,7 @@
     border: 1px solid rgba(0, 0, 0, 0.15);
     border-radius: 0.25rem;
     padding: 0.25rem;
+    display: none;
     margin-bottom: 1rem;
   }
   #map-container #map-container-inner {
@@ -73,11 +108,18 @@
     justify-content: center;
     flex-wrap: wrap;
 }
+.quiz .loc_input:nth-child(2) {
+    margin-right: 0 !important;
+}
 
+
+.quiz_sec_2, .quiz_sec_3, .quiz_sec_4 {
+    display: none;
+}
 .quiz input {
     border: 1px solid #000;
     border-radius: 100px;
-    padding: 30px 50px;
+    padding: 30px 82px 30px 50px;
     margin: 0 30px 30px 0;
     font-size: 30px;
 }
