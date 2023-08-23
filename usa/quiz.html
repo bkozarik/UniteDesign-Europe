@@ -1,834 +1,551 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="ru">
 <head>
-   <!-- required meta -->
-   <meta charset="UTF-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <!-- #favicon -->
-   <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
-   <!-- #title -->
-   <title>LogiLink | Logistic in USA</title>
-   <!-- #keywords -->
-   <!-- #description -->
-   <!-- ==== css dependencies start ==== -->
-   <!-- bootstrap five css -->
-   <link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
-   <!-- glyphter css -->
-   <link rel="stylesheet" href="assets/vendor/glyyphter/css/xpovio.css">
-   <!-- font awesome six css -->
-   <link rel="stylesheet" href="assets/vendor/font-awesome/css/all.css">
-   <!-- nice select css -->
-   <link rel="stylesheet" href="assets/vendor/nice-select/css/nice-select.css">
-   <!-- magnific popup css -->
-   <link rel="stylesheet" href="assets/vendor/magnific-popup/css/magnific-popup.css">
-   <!-- slick css -->
-   <link rel="stylesheet" href="assets/vendor/slick/css/slick.css">
-   <!-- ==== / css dependencies end ==== -->
-   <!-- main css -->
-   <link rel="stylesheet" href="assets/css/main.min.css">
+	<meta charset="UTF-8">
+	<title>(1)</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://paradigma.website/quiz/potolki2/assets/css/normalize.css">
+	<link rel="stylesheet" href="assets/css/quiz.css">
 </head>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0qe-Nm-I-wRVSHg__FQmbIIE9WNpbqms&amp;libraries=places"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/geocomplete/1.7.0/jquery.geocomplete.min.js"></script>
-<script>
-   (function($) {
-  var $button,
-    $icon,
-    $lat,
-    $lng,
-    $map,
-    $mapDetails,
-    $pac,
-    $pac1,
-    $timezone,
-    $zoom,
-    map,
-    mapIsVisible = false,
-    marker,
-    settings = {
-      markerOptions: {
-        draggable: true
-      },
-      mapOptions: {
-        streetViewControl: false,
-        scrollwheel: false,
-        scaleControl: false,
-        panControl: false,
-        zoomControlOptions: {
-          style: google.maps.ZoomControlStyle.SMALL
-        },
-        zoom: 11,
-        styles: [{
-          featureType: "poi",
-          elementType: "labels",
-          stylers: [{
-            visibility: "off"
-          }]
-        }]
-      }
-    },
-
-    initGeoComplete = function() {
-      $pac.geocomplete({
-        markerOptions: settings.markerOptions,
-        map: $map,
-        mapOptions: settings.mapOptions,
-        details: $mapDetails,
-        detailsAttribute: "data-geo",
-        types: ['geocode', 'establishment']
-      });
-
-      $pac.attr('default-placeholder', $pac.attr('placeholder'));
-
-      map = $pac.geocomplete('map');
-      marker = $pac.geocomplete('marker');
-      $pac1.geocomplete({
-        markerOptions: settings.markerOptions,
-        map: $map,
-        mapOptions: settings.mapOptions,
-        details: $mapDetails,
-        detailsAttribute: "data-geo",
-        types: ['geocode', 'establishment']
-      });
-
-      $pac1.attr('default-placeholder', $pac1.attr('placeholder'));
-
-      map = $pac1.geocomplete('map');
-      marker = $pac1.geocomplete('marker');
-    },
-
-    initEvents = function() {
-      $pac.on('input', function(event) {
-        updatePacButtonState(false);
-      });
-      $pac1.on('input', function(event) {
-        updatePacButtonState(false);
-      });
-      $button.on('click', function(event) {
-        event.preventDefault();
-        event.stopImmediatePropagation();
-        if ('' !== $pac.val()) {
-          $pac.val('');
-          updatePacButtonState(false);
-        } else {
-          updatePacButtonState(true);
-          findCurrentAddress();
-        }
-        if ('' !== $pac1.val()) {
-          $pac1.val('');
-          updatePacButtonState(false);
-        } else {
-          updatePacButtonState(true);
-          findCurrentAddress();
-        }
-      });
-
-      google.maps.event.addDomListener(window, 'resize', function() {
-        if (marker.getVisible()) {
-          refreshMap();
-        }
-      });
-
-      google.maps.event.addListener(map, 'idle', function() {
-        // Only update zoom if map is visible
-        if (!mapIsVisible) {
-          return;
-        }
-        if (parseInt(map.getZoom(), 10) !== parseInt($zoom.val(), 10)) {
-          $zoom.val(map.getZoom());
-        }
-      });
-
-      $pac.bind('geocode:dragged', function(event, result) {
-        $lat.val(result.lat());
-        $lng.val(result.lng());
-        map.setCenter(result);
-      });
-
-      $pac.bind("geocode:result", function(event, result) {
-        showMap();
-        $zoom.val(map.getZoom());
-        updateStreetAddressTwo(result);
-        updateTimezone();
-      });
-      $pac1.bind('geocode:dragged', function(event, result) {
-        $lat.val(result.lat());
-        $lng.val(result.lng());
-        map.setCenter(result);
-      });
-
-      $pac1.bind("geocode:result", function(event, result) {
-        showMap();
-        $zoom.val(map.getZoom());
-        updateStreetAddressTwo(result);
-        updateTimezone();
-      });
-      $('input[data-geo=lat],input[data-geo=lng],input[data-geo=zoom]').on('change', function() {
-        updateMap();
-      });
-    },
-
-    updateTimezone = function() {
-      $.ajax({
-        url: "https://maps.googleapis.com/maps/api/timezone/json?location=" + $lat.val() + "," + $lng.val() + "&timestamp=" + (Math.round((new Date().getTime()) / 1000)).toString() + "&sensor=false"
-      }).done(function(response) {
-        if (response.timeZoneId != null) {
-          $timezone.val(response.timeZoneId);
-        }
-      });
-    },
-
-    updatePacButtonState = function(loading) {
-      if (loading) {
-        $button.attr('data-original-title', $button.attr('data-title-loading'));
-        $icon
-          .removeClass('fa-location-arrow')
-          .addClass('fa-spinner fa-spin')
-          .prop('disabled', true);
-        $pac.attr('placeholder', 'Loading...');
-        $pac.prop('disabled', true);
-        $pac.val('');
-        $pac1.attr('placeholder', 'Loading...');
-        $pac1.prop('disabled', true);
-        $pac1.val('');
-        return;
-      }
-
-      $pac.attr('placeholder', $pac.attr('default-placeholder'));
-      $pac.prop('disabled', false);
-      $pac1.attr('placeholder', $pac1.attr('default-placeholder'));
-      $pac1.prop('disabled', false);
-      $icon.prop('disabled', false);
-      if ('' !== $pac1.val()) {
-        $button.attr('data-original-title', $button.attr('data-title-clear'));
-        $icon
-          .removeClass('fa-location-arrow fa-spinner fa-spin')
-          .addClass('fa-times');
-      } else {
-        $button.attr('data-original-title', $button.attr('data-title-geolocate'));
-        $icon
-          .removeClass('fa-times fa-spinner fa-spin')
-          .addClass('fa-location-arrow');
-      }
-      if ('' !== $pac.val()) {
-        $button.attr('data-original-title', $button.attr('data-title-clear'));
-        $icon
-          .removeClass('fa-location-arrow fa-spinner fa-spin')
-          .addClass('fa-times');
-      } else {
-        $button.attr('data-original-title', $button.attr('data-title-geolocate'));
-        $icon
-          .removeClass('fa-times fa-spinner fa-spin')
-          .addClass('fa-location-arrow');
-      }
-    },
-
-    showMap = function() {
-      if (mapIsVisible) {
-        return;
-      }
-
-      $map
-        .fadeTo(0, 0)
-        .css({
-          display: "block"
-        });
-      refreshMap();
-      $map.fadeTo('slow', 1);
-      mapIsVisible = true;
-    },
-
-    hideMap = function() {
-      if (!mapIsVisible) {
-        return;
-      }
-
-      $map.hide().fadeTo(0, 0).css({
-        display: "none"
-      });
-      mapIsVisible = false;
-    },
-
-    updateMap = function() {
-      if (
-        '' !== $lat.val() &&
-        '' !== $lng.val() &&
-        '' !== $zoom.val()) {
-        var center = new google.maps.LatLng(parseFloat($lat.val()), parseFloat($lng.val()));
-        map.setCenter(center);
-        marker.setPosition(center);
-        map.setZoom(parseInt($zoom.val(), 10));
-        showMap();
-      } else {
-        hideMap();
-      }
-    },
-
-    refreshMap = function() {
-      google.maps.event.trigger(map, 'resize');
-      map.setCenter(marker.getPosition());
-    },
-
-    updateStreetAddressTwo = function(result) {
-      var data = [],
-        resultStr = '';
-
-      $.each(result.address_components, function(index, object) {
-        var name = object.types[0];
-
-        $.each(object.types, function(index, name) {
-          data[name] = object.long_name;
-          data[name + "_short"] = object.short_name;
-        });
-      });
-
-      if (data['premise']) {
-        resultStr += ' BLDG ' + data['premise'];
-      }
-      if (data['floor']) {
-        resultStr += ' FL ' + data['floor'];
-      }
-      if (data['subpremise']) {
-        resultStr += ' STE ' + data['subpremise'];
-      }
-
-      $('input[data-geo=street_address_2]').val(resultStr.trim());
-    },
-
-    findCurrentAddress = function() {
-      if (!navigator.geolocation) {
-        return;
-      }
-
-      updatePacButtonState(true);
-
-      navigator.geolocation.getCurrentPosition(function(pos) {
-
-        var geocoder = new google.maps.Geocoder(),
-          latlng = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
-        geocoder.geocode({
-          'latLng': latlng
-        }, function(results, status) {
-          if (status === google.maps.GeocoderStatus.OK) {
-            if (results[0]) {
-              $pac.val(results[0].formatted_address);
-              $pac1.val(results[0].formatted_address);
-
-              // Remove the viewport data as this doesn't match somehow
-              delete results[0]['geometry']['viewport'];
-              $pac.geocomplete('update', results[0]);
-              $pac1.geocomplete('update', results[0]);
-            }
-          }
-          updatePacButtonState(false);
-        });
-      }, function(err) {
-        updatePacButtonState(false);
-        var $alert = $('<div class="alert alert-warning" role="alert">').text(err.message);
-        $mapDetails.prepend($alert);
-        setTimeout(function() {
-          $alert.fadeOut('fast', function() {
-            $alert.remove();
-          });
-        }, 2000)
-      }, {
-        enableHighAccuracy: true,
-        timeout: 5000,
-        maximumAge: 0
-      });
-    },
-
-    init = function() {
-      $button = $(".geolocateButton");
-      $icon = $button.find('i');
-      $lat = $('#latText');
-      $lng = $('#lngText');
-      $map = $('#map');
-      $mapDetails = $('#mapDetails');
-      $pac = $('.fulladdressText');
-      $pac1 = $('.fulladdressText1');
-      $timezone = $('#timezoneText');
-      $zoom = $('#zoomText');
-
-      initGeoComplete();
-      updateMap();
-      initEvents();
-    };
-
-  $(function() {
-    init();
-  });
-
-})(jQuery); // Self executing annonimous function
-
-(function($) {
-
-  $(function() {
-    $('[data-toggle="tooltip"]').tooltip()
-  })
-
-})(jQuery); // Self executing annonimous function
-</script>
-<script type="text/javascript" src="http://www.carqueryapi.com/js/jquery.min.js"></script>
-<script type="text/javascript" src="http://www.carqueryapi.com/js/carquery.0.3.4.js"></script>
-<script type="text/javascript">
-   $(document).ready(
-   function()
-{
-     //Create a variable for the CarQuery object.  You can call it whatever you like.
-     var carquery = new CarQuery();
-
-     //Run the carquery init function to get things started:
-     carquery.init();
-     
-     //Optionally, you can pre-select a vehicle by passing year / make / model / trim to the init function:
-     //carquery.init('2000', 'dodge', 'Viper', 11636);
-
-     //Optional: Pass sold_in_us:true to the setFilters method to show only US models. 
-     carquery.setFilters( {sold_in_us:true} );
-
-     //Optional: initialize the year, make, model, and trim drop downs by providing their element IDs
-     carquery.initYearMakeModelTrim('car-years', 'car-makes', 'car-models', 'car-model-trims');
-
-     //Optional: set the onclick event for a button to show car data.
-     $('#cq-show-data').click(  function(){ carquery.populateCarData('car-model-data'); } );
-
-     //Optional: initialize the make, model, trim lists by providing their element IDs.
-     carquery.initMakeModelTrimList('make-list', 'model-list', 'trim-list', 'trim-data-list');
-
-     //Optional: set minimum and/or maximum year options.
-     carquery.year_select_min=1980;
-     carquery.year_select_max=2023;
- 
-     //Optional: initialize search interface elements.
-     //The IDs provided below are the IDs of the text and select inputs that will be used to set the search criteria.
-     //All values are optional, and will be set to the default values provided below if not specified.
-     var searchArgs =
-     ({
-         body_id:                       "cq-body"
-        ,default_search_text:           "Keyword Search"
-        ,doors_id:                      "cq-doors"
-        ,drive_id:                      "cq-drive"
-        ,engine_position_id:            "cq-engine-position"
-        ,engine_type_id:                "cq-engine-type"
-        ,fuel_type_id:                  "cq-fuel-type"
-        ,min_cylinders_id:              "cq-min-cylinders"
-        ,min_mpg_hwy_id:                "cq-min-mpg-hwy"
-        ,min_power_id:                  "cq-min-power"
-        ,min_top_speed_id:              "cq-min-top-speed"
-        ,min_torque_id:                 "cq-min-torque"
-        ,min_weight_id:                 "cq-min-weight"
-        ,min_year_id:                   "cq-min-year"
-        ,max_cylinders_id:              "cq-max-cylinders"
-        ,max_mpg_hwy_id:                "cq-max-mpg-hwy"
-        ,max_power_id:                  "cq-max-power"
-        ,max_top_speed_id:              "cq-max-top-speed"
-        ,max_weight_id:                 "cq-max-weight"
-        ,max_year_id:                   "cq-max-year"
-        ,search_controls_id:            "cq-search-controls"
-        ,search_input_id:               "cq-search-input"
-        ,search_results_id:             "cq-search-results"
-        ,search_result_id:              "cq-search-result"
-        ,seats_id:                      "cq-seats"
-        ,sold_in_us_id:                 "cq-sold-in-us"
-     }); 
-     carquery.initSearchInterface(searchArgs);
-
-     //If creating a search interface, set onclick event for the search button.  Make sure the ID used matches your search button ID.
-     $('#cq-search-btn').click( function(){ carquery.search(); } );
-});
-</script>
-<body class="home-five-light" style="height: 100vh;">
-   <!--[if lte IE 9]>
-      <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
-      <![endif]-->
-   <div class="my-app">
-      <!-- ==== preloader start ==== -->
-
-      <!-- ==== / preloader end ==== -->
-      <!-- ==== mouse cursor drag start ==== -->
-      <div class="mouseCursor cursor-outer"></div>
-      <div class="mouseCursor cursor-inner">
-         <span>Drag</span>
-      </div>
-      <!-- ==== / mouse cursor drag end ==== -->
-      <!-- ==== header start ==== -->
-      <header class="header">
-         <div class="primary-navbar quinary--navbar">
-            <div class="container">
-               <div class="row">
-                  <div class="col-12">
-                     <nav class="navbar p-0">
-                        <div class="navbar__logo">
-                           <a href="index.html" aria-label="go to home" style="font-size: 50px; color: black;">
-                              LogiLink
-                           </a>
-                           <button class="open-offcanvas-nav d-none d-xl-flex" aria-label="toggle mobile menu">
-                              <i class="fa-light fa-bars-staggered"></i>
-                           </button>
-                        </div>
-                        <div class="navbar__menu">
-                           <ul class="navbar__list">
-                              
-                              <li class="navbar__item nav-fade">
-                                 <a href="#">Home</a>
-                              </li>
-                              <li class="navbar__item nav-fade">
-                                 <a href="about-us.html">About Us</a>
-                              </li>
-
-                           </ul>
-                        </div>
-                        <div class="navbar__options">
-                           <div class="navbar__mobile-options d-none d-sm-flex">
-                              <a href="contact-us.html" class="btn btn--secondary">Let's Talk</a>
-                           </div>
-                           <button class="open-offcanvas-nav d-flex d-xl-none" aria-label="toggle mobile menu">
-                              <i class="fa-light fa-bars-staggered"></i>
-                           </button>
-                        </div>
-                     </nav>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </header>
-      <!-- ==== / header end ==== -->
-      <!-- ==== offcanvas nav start ==== -->
-      <div class="offcanvas-nav">
-         <div class="offcanvas-menu">
-            <nav class="offcanvas-menu__wrapper">
-               <div class="offcanvas-menu__header nav-fade">
-                  <div class="logo">
-                     <a href="index.html" aria-label="go to home" style="font-size: 50px; ">
-                        LogiLink
-                     </a>
-                  </div>
-                  <button aria-label="close offcanvas menu" class="close-offcanvas-menu">
-                     <i class="fa-light fa-xmark-large"></i>
-                  </button>
-               </div>
-               <div class="offcanvas-menu__list">
-                  <div class="navbar__menu">
-                     <ul class="navbar__list">
-                        <li class="navbar__item nav-fade">
-                           <a href="about-us.html">Home</a>
-                        </li>
-                        <li class="navbar__item nav-fade">
-                           <a href="about-us.html">About Us</a>
-                        </li>
-                        <li class="navbar__item nav-fade">
-                           <a href="about-us.html">About Us</a>
-                        </li>
-                        <li class="navbar__item nav-fade">
-                           <a href="about-us.html">About Us</a>
-                        </li>
-                        <li class="navbar__item nav-fade">
-                           <a href="about-us.html">About Us</a>
-                        </li>
-                     </ul>
-                  </div>
-               </div>
-               <div class="offcanvas-menu__options nav-fade">
-                  <div class="offcanvas__mobile-options d-flex">
-                     <a href="contact-us.html" class="btn btn--secondary">Let's Talk</a>
-                  </div>
-               </div>
-               <div class="offcanvas-menu__social social nav-fade">
-                  <a href="https://www.facebook.com/" target="_blank" aria-label="share us on facebook">
-                     <i class="fa-brands fa-facebook-f"></i>
-                  </a>
-                  <a href="https://www.twitter.com/" target="_blank" aria-label="share us on twitter">
-                     <i class="fa-brands fa-twitter"></i>
-                  </a>
-                  <a href="https://www.pinterest.com/" target="_blank" aria-label="share us on pinterest">
-                     <i class="fa-brands fa-linkedin-in"></i>
-                  </a>
-                  <a href="https://www.instagram.com/" target="_blank" aria-label="share us on instagram">
-                     <i class="fa-brands fa-instagram"></i>
-                  </a>
-               </div>
-            </nav>
-         </div>
-      </div>
-      <!-- ==== / offcanvas nav end ==== -->
-      <div id="smooth-wrapper">
-         <div id="smooth-content">
-            <!-- ==== main start ==== -->
-            <main>
-               <!-- ==== banner start ==== -->
-
-               <!-- ==== / banner end ==== -->
-               <!-- ==== testimonial start ==== -->
-
-               <!-- ==== / testimonial end ==== -->
-            </main>
-            <!-- ==== / main end ==== -->
-
-            <!-- ==== footer start ==== -->
-            <script>
-
-               $(document).ready(function(){
-                  $('.quiz_next_1').click(function(){
-                     $('.quiz_sec_1').hide();
-                     $('.quiz_sec_2').fadeIn();
-                  });
-                  $('.quiz_next_2').click(function(){
-                     $('.quiz_sec_2').hide();
-                     $('.quiz_sec_3').fadeIn();
-                  });
-                  $('.quiz_next_3').click(function(){
-                     $('.quiz_sec_3').hide();
-                     $('.quiz_sec_4').fadeIn();
-                  });
-				   });
-				
-            </script>
-            <section class="section footer-four pb-0 quiz_sec quiz_sec_1">
-               <div class="container">
-                  <div class="row">
-                     <div class="col-12">
-                        <div class="footer-four__content">
-                           <div class="intro text-center">
-                              <h2 class="light-title text-uppercase title-anim">
-                                 Let's make some magic ✨ happen and show the world what your brand is all about!
-                              </h2>
-                           </div>
-                           <div class="row justify-content-center cta-t section__content-cta">
-                                  
-                                 <div class="quiz">
-
-                                    <div class="loc_input">
-                                       <input type="text"  class="loc_input fulladdressText" placeholder="Pick up address">
-                                       <span class="input-group-btn">
-                                       <button class="btn btn-secondary geolocateButton"  type="button" data-toggle="tooltip" data-placement="top" title="Use your current location" data-title-clear="Clear address field" data-title-geolocate="Use your current location" data-title-loading="Please wait, finding your loaction..."><i class="fa fa-location-arrow" aria-hidden="true"></i></button>
-                                       </span>
-                                    </div>
- 
-                                    
-
-
-                                    <div class="loc_input">
-                                       <input type="text" style="margin-right: 0;" class="loc_input fulladdressText1" placeholder="Drop off address">
-                                       <span class="input-group-btn input-group-btn2">
-                                       <button class="btn btn-secondary geolocateButton" type="button" data-toggle="tooltip" data-placement="top" title="Use your current location" data-title-clear="Clear address field" data-title-geolocate="Use your current location" data-title-loading="Please wait, finding your loaction..."><i class="fa fa-location-arrow" aria-hidden="true"></i></button>
-                                       </span>
-                                    </div>
-                                    
-                                    
-                                     
-                                     <input type="text" placeholder="Pick up ZIP" class="loc_input">
-                                     <input type="text" style="margin-right: 0;" placeholder="Drop off ZIP" class="loc_input">
-                                     <input type="text" placeholder="Date" class="loc_input">
-
-
-
-
-                                     <div id="map-container">
-                                       <div id="map-container-inner">
-                                         <div id="map"></div>
-                                       </div>
-                                     </div>
-                                 </div>
-
-                           <div class="row justify-content-center cta-t section__content-cta">
-                              <div class="col-12 col-md-8">
-                                 <h3>
-                                    <a class="quiz_next quiz_next_1">
-                                       Go next 
-                                       <i class="fa-regular fa-comment-dots"></i>
-                                    </a>
-                                 </h3>
-                                 <p>Let's make your brand the talk of the town</p>
-                              </div>
-                           </div>
-                        
-
-
-
-                     </div>
-                  </div>
-       
-               </div>
-          
-            </section>
-
-
-            <section class="section footer-four pb-0 quiz_sec quiz_sec_2">
-                  <div class="container">
-                     <div class="row">
-                        <div class="col-12">
-                           <div class="footer-four__content">
-                              <div class="intro text-center">
-                                 <h2 class="light-title text-uppercase title-anim">
-                                    Let's make some magic ✨ happen and show the world what your brand is all about!
-                                 </h2>
-                              </div>
-                              <!-- Start Cars -->
-
-
-                              
-                              
-                              <!-- <input class="btn btn-primary" id="cq-show-data" type="button" value="Show Data" /> -->
-                              <!-- <div id="car-model-data"></div> -->
-                              <!-- End -->
-
-    
-
-                              <div class="row justify-content-center cta-t section__content-cta">
-                                 <div class="quiz">
-                                    <input type="text" placeholder="Car year">
-                                    <input type="text" placeholder="Car make" style="margin-right: 0;">
-                                    <input type="text" placeholder="Car model">
-                                    <input type="text" placeholder="Car trim" style="margin-right: 0;">
-                                    <textarea type="text" placeholder="Car descripton"></textarea>
-                                 </div>
-                              </div>
-                                                                
-
-
-                              <div class="row justify-content-center cta-t section__content-cta">
-                                 <div class="col-12 col-md-8">
-                                    <h3>
-                                       <a class="quiz_next quiz_next_2">
-                                          Go next
-                                          <i class="fa-regular fa-comment-dots"></i>
-                                       </a>
-                                    </h3>
-                                    <p>Let's make your brand the talk of the town</p>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-          
-                  </div>
-             
-            </section>
-
-
-            <section class="section footer-four pb-0 quiz_sec quiz_sec_3">
-               <div class="container">
-                  <div class="row">
-                     <div class="col-12">
-                        <div class="footer-four__content">
-                           <div class="intro text-center">
-                              <h2 class="light-title text-uppercase title-anim">
-                                 Let's make some magic ✨ happen and show the world what your brand is all about!
-                              </h2>
-                           </div>
-                           <div class="row justify-content-center cta-t section__content-cta">
-                                  
-                                 <div class="quiz">
-                                    <input type="text" placeholder="First name">
-                                    <input type="text" placeholder="Last name" style="margin-right: 0;">
-                                    <input type="text" placeholder="Phone">
-                                    <input type="text" placeholder="Email" style="margin-right: 0;">
-                                 </div>
-
-                           </div>
-                           <div class="row justify-content-center cta-t section__content-cta">
-                              <div class="col-12 col-md-8">
-                                 <h3>
-                                    <a class="quiz_next quiz_next_3">
-                                       Go next
-                                       <i class="fa-regular fa-comment-dots"></i>
-                                    </a>
-                                 </h3>
-                                 <p>Let's make your brand the talk of the town</p>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-       
-               </div>
-          
-            </section>
-            <section class="section footer-four pb-0 quiz_sec quiz_sec_4">
-               <div class="container">
-                  <div class="row">
-                     <div class="col-12">
-                        <div class="footer-four__content">
-                           <div class="intro text-center">
-                              <h2 class="light-title text-uppercase title-anim">
-                                 Thank you so much, your information has been sent!                              </h2>
-                           </div>
-
-                  </div>
-       
-               </div>
-          
-            </section>
-         
-            <!-- ==== / footer end ==== -->
-         </div>
-         <div class="lines d-none d-lg-flex">
-            <div class="line"></div>
-            <div class="line"></div>
-            <div class="line"></div>
-            <div class="line"></div>
-            <div class="line"></div>
-         </div>
-      </div>
-
-      
-
-
-
-
-
-
-
-      <!-- ==== scroll to top start ==== -->
-      <button class="progress-wrap" aria-label="scroll indicator" title="go to top">
-         <span></span>
-         <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
-            <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
-         </svg>
-      </button>
-      <!-- ==== / scroll to top end ==== -->
-      <!-- video modal -->
-
-   </div>
-   <!-- ==== js dependencies start ==== -->
-   <!-- jquery -->
-   <script src="assets/vendor/jquery/jquery-3.7.0.min.js"></script>
-   <!-- bootstrap five js -->
-   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-   <!-- nice select js -->
-   <script src="assets/vendor/nice-select/js/jquery.nice-select.min.js"></script>
-   <!-- magnific popup js -->
-   <script src="assets/vendor/magnific-popup/js/jquery.magnific-popup.min.js"></script>
-   <!-- slick js -->
-   <script src="assets/vendor/slick/js/slick.min.js"></script>
-   <!-- image loaded js -->
-   <script src="assets/vendor/images-loaded/imagesloaded.pkgd.min.js"></script>
-   <!-- isotope js -->
-   <script src="assets/vendor/isotope/isotope.pkgd.min.js"></script>
-   <!-- chroma js -->
-   <script src="assets/vendor/gsap/chroma.min.js"></script>
-   <!-- splittext js -->
-   <script src="assets/vendor/gsap/SplitText.min.js"></script>
-   <!-- scrollsmoother js -->
-   <script src="assets/vendor/gsap/ScrollSmoother.min.js"></script>
-   <!-- scrollto js -->
-   <script src="assets/vendor/gsap/ScrollToPlugin.min.js"></script>
-   <!-- scrolltrigger js -->
-   <script src="assets/vendor/gsap/ScrollTrigger.min.js"></script>
-   <!-- gsap js -->
-   <script src="assets/vendor/gsap/gsap.min.js"></script>
-   <!-- vanilla tilt js -->
-   <script src="assets/vendor/vanilla-tilt/tilt.jquery.js"></script>
-   <!-- ==== / js dependencies end ==== -->
-   <!-- plugins js -->
-   <script src="assets/js/plugins.js"></script>
-   <!-- main js -->
-   <script src="assets/js/main.js"></script>
+<body>
+
+
+	<div class="full"  style="background: url(https://paradigma.website/quiz/potolki2/assets/img/bg-full-1.jpg) no-repeat center; background-size: cover;">
+
+
+		<div class="test" id="test">
+			
+			<div class="container">
+				<h2 class="title-section title-wrap">
+					Answer 6 questions and you will receive an <span>accurate estimate <br>
+						of the cost</span> of car delivery + <span>a gift</span>
+				</h2>
+                
+
+				<div class="test-wrapper" >
+					
+					<div class="left-block" >
+						<div class="left-block-subtitle sbt-js">We're one gift away:</div>
+						<div class="left-block-title" id="qw-title">5 questions</div>
+
+
+						<div class="gift-block" style="display: none;">
+							<img src="https://paradigma.website/quiz/potolki2/assets/img/test/gift-1.png" alt="" class="gift-img">
+
+							<div class="gift-block-title">
+								Дизайнерские светильники
+							</div>
+						</div>
+					</div>
+
+					<div class="test__main">
+
+						<div class="progress-bar">
+							<div class="progress-bar__title">
+								Settlement passed by <span class="proc-progres">14%</span>
+							</div>
+							<div class="progress-bar__line-wrap">
+								<div class="progress-bar__line">
+									<!-- <div class="progress-bar__line-num">14%</div> -->
+								</div>
+							</div>
+						</div>
+
+
+						<form action="" id="testStart" enctype="multipart/form-data" method="POST">
+							<input type="hidden" name="formname" value="test">
+
+							<div class="test-content">
+								<!-- 1 -->
+								<div class="test-item test-item-block" >
+
+									<div class="test-text-wrap">
+										<div class="left-block-title">Select the type of engine in the vehicle:</div>
+									</div>
+									<!-- 1 -->
+									<label for="qw1-1" class="test_elem test-elem-1 test-elem-6">
+
+										<img src="assets/images/engine-1.png" alt="" class="qw6-img-1 qw6-img-1-1">
+
+										<span class="checkbox-wrap test-question__checkbox">
+										
+											<input type="radio" id="qw1-1" class="radio-btn checkbox-inp" value="petrol" name="qw1">
+											<span class="bg-qw1"></span>
+											<label for="qw1-1" class="radio-label">
+												<span class="radio-psevdo">
+													<span class="radio-psevdo-active"></span>
+												</span>
+												petrol
+											</label>
+										</span>
+									</label>
+
+									<!-- 2 -->
+									<label for="qw1-2" class="test_elem test-elem-1 test-elem-6">
+
+										<img src="assets/images/engine-2.png" alt="" class="qw6-img-1 qw6-img-1-2" >
+
+										<span class="checkbox-wrap test-question__checkbox">
+										
+											<input type="radio" id="qw1-2" class="radio-btn checkbox-inp" value="diesel" name="qw1">
+											<span class="bg-qw1"></span>
+											<label for="qw1-2" class="radio-label">
+												<span class="radio-psevdo">
+													<span class="radio-psevdo-active"></span>
+												</span>
+												diesel
+											</label>
+										</span>
+									</label>
+
+									<!-- 3 -->
+									<label for="qw1-3" class="test_elem test-elem-1 test-elem-6">
+
+										<img src="assets/images/engine-3.png" alt="" class="qw6-img-1 qw6-img-1-3" style="max-width: 150px; margin-top:20px">
+
+										<span class="checkbox-wrap test-question__checkbox">
+										
+											<input type="radio" id="qw1-3" class="radio-btn checkbox-inp" value="hybrid" name="qw1">
+											<span class="bg-qw1"></span>
+											<label for="qw1-3" class="radio-label">
+												<span class="radio-psevdo">
+													<span class="radio-psevdo-active"></span>
+												</span>
+												hybrid
+											</label>
+										</span>
+									</label>
+
+									<!-- 4 -->
+									<label for="qw1-4" class="test_elem test-elem-1 test-elem-6">
+
+										<img src="assets/images/engine-4.png" alt="" class="qw6-img-1 qw6-img-1-4" style="min-width: 200px; margin-top:20px">
+
+										<span class="checkbox-wrap test-question__checkbox">
+										
+											<input type="radio" id="qw1-4" class="radio-btn checkbox-inp " value="electric" name="qw1">
+											<span class="bg-qw1"></span>
+											<label for="qw1-4" class="radio-label">
+												<span class="radio-psevdo">
+													<span class="radio-psevdo-active"></span>
+												</span>
+												electric
+											</label>
+										</span>
+									</label>
+
+								</div>
+
+
+
+								<!-- 2 -->
+								<div class="test-item test-item-block qw-2-block" style="display: none;">
+
+									<div class="test-text-wrap">
+										<div class="left-block-title">Delivery address: </div>
+									</div>
+									<!-- 1 -->
+									<div class="test-elem-big">
+										<span class="name-inp">Pick up address:</span>
+										<input type="text" class="input input-qw2" placeholder="Pick up address" name="qw2-1" >
+									</div>
+
+									<div class="test-elem-big ">
+										<span class="name-inp">Drop off address:</span>
+										<input type="text" class="input input-qw2" placeholder="Pick up ZIP" name="qw2-2" >
+									</div>
+
+									<div class="test-elem-big ">
+										<span class="name-inp">Pick up ZIP:</span>
+										<input type="text" class="input input-qw2" placeholder="Pick up ZIP" name="qw2-3" >
+									</div>
+									<div class="test-elem-big ">
+										<span class="name-inp">Drop off ZIP:</span>
+										<input type="text" class="input input-qw2" placeholder="Drop off ZIP" name="qw2-4" >
+									</div>
+
+									<div class="test-elem-big ">
+										<span class="name-inp">Date:</span>
+										<input type="date" class="input input-qw2" placeholder="Date" name="qw2-5" >
+									</div>
+                           <!-- 1 -->
+
+
+									
+
+								</div>
+
+
+								<!-- 3 -->
+								<div class="test-item test-item-block" style="display: none;">
+
+									<div class="test-text-wrap">
+										<div class="left-block-title">Select car body type: </div>
+									</div>
+									<!-- 1 -->
+
+									<label for="qw3-1" class="test_elem test_elem-t2">
+										<span class="img-label" style="background: url(https://taurus-group.com.ua/calc2/img/b-2_1.png) no-repeat center; background-size: cover;"></span>
+										<span class="checkbox-wrap test-question__checkbox">
+									
+											<input type="radio" id="qw3-1" class="radio-btn checkbox-inp" value="sedan/hatchback/universal" name="qw3">
+											<span class="bg-qw1"></span>
+											<label for="qw3-1" class="radio-label">
+												<span class="radio-psevdo">
+													<span class="radio-psevdo-active"></span>
+												</span>
+												sedan/hatchback/universal
+											</label>
+										</span>
+									</label>
+
+									<!-- 2 -->
+
+									<label for="qw3-2" class="test_elem test_elem-t2">
+										<span class="img-label" style="background: url(https://taurus-group.com.ua/calc2/img/b-2_2.png) no-repeat center; background-size: cover;"></span>
+										<span class="checkbox-wrap test-question__checkbox">
+									
+											<input type="radio" id="qw3-2" class="radio-btn checkbox-inp" value="crossover/SUV/minivan" name="qw3">
+											<span class="bg-qw1"></span>
+											<label for="qw3-2" class="radio-label">
+												<span class="radio-psevdo">
+													<span class="radio-psevdo-active"></span>
+												</span>
+												crossover/SUV/minivan
+											</label>
+										</span>
+									</label>
+
+									<!-- 3 -->
+
+									<label for="qw3-3" class="test_elem test_elem-t2">
+										<span class="img-label" style="background: url(https://taurus-group.com.ua/calc2/img/b-2_3.png) no-repeat center; background-size: cover;"></span>
+										<span class="checkbox-wrap test-question__checkbox">
+									
+											<input type="radio" id="qw3-3" class="radio-btn checkbox-inp" value="pickup truck/microbus/etc." name="qw3">
+											<span class="bg-qw1"></span>
+											<label for="qw3-3" class="radio-label">
+												<span class="radio-psevdo">
+													<span class="radio-psevdo-active"></span>
+												</span>
+												pickup truck/microbus/etc.
+											</label>
+										</span>
+									</label>
+
+	
+
+
+								</div>
+
+								<!-- 4 -->
+								<div class="test-item test-item-block qw-2-block" style="display: none;">
+
+									<div class="test-text-wrap">
+										<div class="left-block-title">Specify the car's characteristics: </div>
+									</div>
+									<!-- 1 -->
+									<div class="test-elem-big">
+										<span class="name-inp">Year:</span>
+										<input type="text" class="input input-qw2" placeholder="Year" name="qw2-1" >
+									</div>
+
+									<div class="test-elem-big ">
+										<span class="name-inp">Make:</span>
+										<input type="text" class="input input-qw2" placeholder="Make" name="qw2-2" >
+									</div>
+
+									<div class="test-elem-big ">
+										<span class="name-inp">Model:</span>
+										<input type="text" class="input input-qw2" placeholder="Model" name="qw2-3" >
+									</div>
+									
+                           <!-- 1 -->
+
+
+									
+
+								</div>
+
+
+					
+
+								<!-- 6 -->
+								<div class="test-item test-item-block" style="display: none;">
+
+									<div class="test-text-wrap">
+										<div class="left-block-title">WHAT KIND OF GIFT WOULD YOU LIKE?</div>
+									</div>
+									<!-- 1 -->
+									<label for="qw6-1" class="test_elem test-elem-1 test-elem-6">
+
+										<img src="https://png.pngtree.com/png-vector/20221121/ourmid/pngtree-transparent-5-off-sale-discount-offer-banner-png-image_6473854.png" alt="" class="qw6-img-1 qw6-img-1-1">
+
+										<span class="checkbox-wrap test-question__checkbox">
+										
+											<input type="radio" id="qw6-1" class="radio-btn checkbox-inp" value="Shipping discount 5%" name="qw6">
+											<span class="bg-qw1"></span>
+											<label for="qw6-1" class="radio-label">
+												<span class="radio-psevdo">
+													<span class="radio-psevdo-active"></span>
+												</span>
+												Shipping discount 5%
+											</label>
+										</span>
+									</label>
+
+									<label for="qw6-1" class="test_elem test-elem-1 test-elem-6">
+
+										<img src="https://png.pngtree.com/png-vector/20221121/ourmid/pngtree-transparent-5-off-sale-discount-offer-banner-png-image_6473854.png" alt="" class="qw6-img-1 qw6-img-1-1">
+
+										<span class="checkbox-wrap test-question__checkbox">
+										
+											<input type="radio" id="qw6-1" class="radio-btn checkbox-inp" value="Shipping discount 5%" name="qw6">
+											<span class="bg-qw1"></span>
+											<label for="qw6-1" class="radio-label">
+												<span class="radio-psevdo">
+													<span class="radio-psevdo-active"></span>
+												</span>
+												Shipping discount 5%
+											</label>
+										</span>
+									</label>
+
+									<label for="qw6-1" class="test_elem test-elem-1 test-elem-6">
+
+										<img src="https://png.pngtree.com/png-vector/20221121/ourmid/pngtree-transparent-5-off-sale-discount-offer-banner-png-image_6473854.png" alt="" class="qw6-img-1 qw6-img-1-1">
+
+										<span class="checkbox-wrap test-question__checkbox">
+										
+											<input type="radio" id="qw6-1" class="radio-btn checkbox-inp" value="Shipping discount 5%" name="qw6">
+											<span class="bg-qw1"></span>
+											<label for="qw6-1" class="radio-label">
+												<span class="radio-psevdo">
+													<span class="radio-psevdo-active"></span>
+												</span>
+												Shipping discount 5%
+											</label>
+										</span>
+									</label>
+
+									<label for="qw6-1" class="test_elem test-elem-1 test-elem-6">
+
+										<img src="https://png.pngtree.com/png-vector/20221121/ourmid/pngtree-transparent-5-off-sale-discount-offer-banner-png-image_6473854.png" alt="" class="qw6-img-1 qw6-img-1-1">
+
+										<span class="checkbox-wrap test-question__checkbox">
+										
+											<input type="radio" id="qw6-1" class="radio-btn checkbox-inp" value="Shipping discount 5%" name="qw6">
+											<span class="bg-qw1"></span>
+											<label for="qw6-1" class="radio-label">
+												<span class="radio-psevdo">
+													<span class="radio-psevdo-active"></span>
+												</span>
+												Shipping discount 5%
+											</label>
+										</span>
+									</label>
+
+
+								</div>
+
+
+								<!-- 7 -->
+								<div class="test-item predfinal no-focus" style="display: none;">
+
+									<div class="test-text-wrap">
+										<div class="big-title-test">
+											Our AI assistant has already started calculating!!
+										</div>
+										<div class="left-block-title">How do you prefer to receive the results with prices?</div>
+									</div>
+
+									<img src="https://paradigma.website/quiz/potolki2/assets/img/test/predl.png" alt="" class="mob-show mb-1">
+									<div class="predfinal__block">
+										<!-- 1 -->
+										<label for="qw7-1" class="test_elem test-elem-7">
+										
+											<span class="checkbox-wrap test-question__checkbox">
+											
+												<input type="radio" id="qw7-1" class="radio-btn checkbox-inp" value="Send me the price and projects to my e-mail" name="qw7" checked>
+										
+												<label for="qw7-1" class="radio-label">
+													<span class="radio-psevdo">
+														<span class="radio-psevdo-active"></span>
+													</span>
+													Send me the price and designs in WHATSAPP
+												</label>
+											</span>
+										</label>
+										<!-- 2 -->
+										<label for="qw7-2" class="test_elem test-elem-7">
+										
+											<span class="checkbox-wrap test-question__checkbox">
+											
+												<input type="radio" id="qw7-2" class="radio-btn checkbox-inp" value="Send me the price and projects to my e-mail" name="qw7">
+										
+												<label for="qw7-2" class="radio-label">
+													<span class="radio-psevdo">
+														<span class="radio-psevdo-active"></span>
+													</span>
+													Send me the price and projects to my e-mail
+												</label>
+											</span>
+										</label>
+										
+										<!-- 3 -->
+										<label for="qw7-3" class="test_elem test-elem-7">
+										
+											<span class="checkbox-wrap test-question__checkbox">
+											
+												<input type="radio" id="qw7-3" class="radio-btn checkbox-inp" value="Show results right now on the site!" name="qw7">
+												<label for="qw7-3" class="radio-label">
+													<span class="radio-psevdo">
+														<span class="radio-psevdo-active"></span>
+													</span>
+													Show results right now on the site!</label>
+											</span>
+										</label>
+										
+										
+										
+										
+									</div>
+
+
+									<div class="predfinal__form">
+										<input type="text" name="name" class="input" required placeholder="Name" style="margin-bottom: 10px;">
+										<input type="mail" name="email" class="input" required placeholder="Email" style="margin-bottom: 10px;">
+
+										<input type="tel" name="phone" class="input" required placeholder="+1 ( ___ ) ___ - ____">
+										<button class="btn btn-predfinal btn-small">
+											<span class="btn-text">
+												Get results
+											</span>
+										</button>
+									</div>
+
+									<div class="predfinal__img">
+										<img src="https://images.squarespace-cdn.com/content/v1/64633bb74aa4a70356428a08/c62ae043-98bc-4403-80fb-d33fb05be438/Union+%281%29.png?format=1500w" alt="" style="
+    width: 400px;
+">
+
+								</div>
+
+								<!-- 8 -->
+
+								<div class="test-item final" id="final" style="display: none;">
+									
+								</div>
+
+
+							</div>
+						</form>
+
+						<div class="test__btn-block" >
+							<button class="btn btn-test test-next" disabled>
+								<span class="btn-text">Next</span>
+								<span class="btn-arr">›</span>
+							</button>
+						</div>
+
+
+						<div class="test__numbers">
+							<div class="test__numbers-item">
+								01
+							</div>
+							<div class="test__numbers-item" style="display: none">
+								02
+							</div>
+							<div class="test__numbers-item" style="display: none">
+								03
+							</div>
+							<div class="test__numbers-item" style="display: none">
+								04
+							</div>
+							<div class="test__numbers-item" style="display: none">
+								05
+							</div>
+							<div class="test__numbers-item" style="display: none">
+								06
+							</div>
+							<div class="test__numbers-item" style="display: none">
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+	</div>
+
+
+
+
+	<div class="overlay" id="thanks" style="display: none;">
+		<div class="modal-wrap">
+			<div class="close"></div>
+			<div class="modal">
+				<div class="modal-title">
+					Спасибо что оставили заявку, наш дизайнер-замерщик перезвонит Вам в течении 15 минут
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<script src="https://paradigma.website/quiz/potolki2/assets/js/libs/jquery-3.3.1.min.js"></script>
+	<script src="assets/js/test.js"></script>
+	<script src="https://paradigma.website/quiz/potolki2/assets/js/jquery.maskedinput.js"></script>
+	<script>
+		$("input[name='phone']").mask("+1-(999)-999-9999");
+		$(".btn-test-scroll").on("click", function (event) {
+		    var id = $(this).attr('href'), top = $(id).offset().top;
+		    $('body,html').animate({scrollTop: top}, 800);
+		});
+
+		$(".btn-wrap-main").on("click", function (event) {
+		    var top = $('#test').offset().top;
+		    $('body,html').animate({scrollTop: top}, 800);
+		});
+	</script>
+	<script>
+
+		function getFileName () {
+
+		var file = document.getElementById ('file').value;
+
+		// file = file.replace(/\\/g, «/»).split('/').pop();
+		if(file === ''){
+			file = "Путь к файлу"
+		}
+
+		document.getElementById ('file-name').innerHTML = '' + file;
+
+
+		}
+
+		$('#file').on('change input', getFileName);
+
+		$(".btn-scr").on("click", function (event) {
+		    var id = $(this).attr('href'), top = $(id).offset().top;
+		    $('body,html').animate({scrollTop: top}, 1000);
+		});
+
+		$('.close').on('click', function(event) {
+			$(".overlay").fadeOut();
+			$("html").removeClass('stop');
+		});
+
+		 $('.overlay').mouseup(function(e){
+		    var container = $('.modal-wrap');
+		    if (container.has(e.target).length === 0 && !container.is(e.target)){
+		        $('html').removeClass('stop');
+		        $('.overlay').fadeOut();
+		    }
+		});
+	</script>
 </body>
-
 </html>
