@@ -2343,7 +2343,7 @@ i {
 
 .banner-five .banner-five__wrapper {
     gap: 30px;
-    padding: 220px 0px 130px;
+    padding: 130px 0px 130px;
     display: flex;
     align-items: center;
     gap: 60px
@@ -2372,9 +2372,11 @@ i {
 }
 
 .banner-five .projects-s__single .content {
-    margin-top: 30px
+    /* margin-top: 30px */
 }
-
+.banner-five .projects-s__single {
+    margin-top: 30px;
+}
 .banner-five .projects-s__single .content h4 {
     text-transform: capitalize
 }
@@ -2383,7 +2385,23 @@ i {
     margin-top: 20px;
     color: #d9d9d9
 }
-
+.banner-five .projects-s__single .content input {
+    color: #000;
+    margin-top: 0;
+    width: 100%;
+}
+.b_name .projects-s__single {
+    border: none;
+}
+.b_name h3 {
+    color: #000;
+} 
+.b_name .projects-s__single {
+    border: none;
+}
+.b_name h3 {
+    color: #000;
+} 
 .cmn-banner {
     padding: 210px 0px 130px;
     background-color: var(--black)
@@ -2830,7 +2848,29 @@ i {
     color: var(--black);
     background-color: var(--primary-color)
 }
+.footer-btn {
+    width: 100%;
+    padding: 34px 20px;
+    justify-content: center;
+    display: flex;
+    gap: 40px;
+    text-transform: uppercase;
+    background-color: var(--white);
+    color: var(--black);
+    border-radius: 200px;
+    font-size: 24px;
+}
 
+
+.footer-btn {
+    background-color: var(--primary-color);
+    color: #fff !important;
+}
+
+.footer-btn:hover {
+    background-color: #000;
+    color: var(--primary-color) !important;
+}
 .footer-four .cta-t p {
     color: var(--secondary-color);
     margin-top: 30px;
@@ -7083,13 +7123,17 @@ i {
 }
 
 .home-five-light .banner-five .projects-s__single {
-    border-color: #d9d9d9
+    border-color: #d9d9d9;
+    border-radius: 100px;
 }
 
 .home-five-light .banner-five .projects-s__single a {
     color: #000
 }
 
+
+
+  
 .home-five-light .banner-five .projects-s__single a:hover {
     color: var(--primary-color)
 }
@@ -8139,7 +8183,9 @@ i {
         gap: 20px
     }
 }
-
+.btn-m {
+    display: none;
+}
 @media only screen and (max-width: 424.98px) {
     .banner-five .banner-five__single {
         padding: 0px 15px
@@ -8154,7 +8200,23 @@ i {
     .thumb-radio .radio {
         margin: 0px 0px
     }
+    .section__content-cta {
+        max-width: 400px;
+
+    }
+    .section__content-cta .btn {
+        width: 229px;
+        margin-top: 20px;
+    }
+    .btn-m {
+        display: block;
+    }
+    .btn-d {
+        display: none;
+    }
+
 }
+
 
 @media only screen and (min-width: 1440px) {
     .container {
